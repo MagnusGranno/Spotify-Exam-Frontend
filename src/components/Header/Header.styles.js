@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
+  margin-left: 30px;
   width: 100%;
   max-width: 1440px;
   height: 100%;
