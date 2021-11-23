@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
 // Url
-import { fiveServers } from "../../../settings";
+import { fetchCategories } from "../../../settings";
 
 // Facade
 import { facade } from "../../../apiFacade";
 
 // Styles
-import { MyBody, Container, Grid, GridContainer, DropdownMenu } from "./Browse.styles";
+import {
+  MyBody,
+  Container,
+  Grid,
+  GridContainer,
+  DropdownMenu,
+} from "./Browse.styles";
 import Dropdown from "./Dropdown";
 
 function Browse() {
@@ -15,6 +21,17 @@ function Browse() {
     selectedGenre: "",
     listOfGenresFromAPI: [],
   });
+
+  useEffect(() => {
+    axios(fetchCategories, {
+      method: "GET",
+    }).then((genreResponse) => {
+      setGenres({
+        selectedGenre: genres.selectedGenre,
+        listOfGenresFromAPI: genreResponse.data,
+      });
+    });
+  }, [genres.selectedGenre]);
 
   const genreChanged = (val) => {
     setGenres({
@@ -26,14 +43,14 @@ function Browse() {
   return (
     <MyBody>
       <DropdownMenu>
-      <form onSubmit={""}>
-        <Dropdown
-          label=""
-          options={genres.listOfGenresFromAPI}
-          selectedValue={genres.selectedGenre}
-          changed={genreChanged}
-        />
-      </form>
+        <form onSubmit={""}>
+          <Dropdown
+            label=""
+            options={genres.listOfGenresFromAPI}
+            selectedValue={genres.selectedGenre}
+            changed={genreChanged}
+          />
+        </form>
       </DropdownMenu>
 
       <GridContainer container spacing={2}>

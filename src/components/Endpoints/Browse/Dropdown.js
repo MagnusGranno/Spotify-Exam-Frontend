@@ -9,13 +9,18 @@ const Dropdown = (props) => {
 
   return (
     <div className="col-sm-12 form-group row px-0">
-      <label className="form-label col-sm-8 bg-dark text-white">{props.label}</label>
+      <label className="form-label col-sm-2 bg-dark text-white">{props.label}</label>
       <select
-        value=""
+        value={props.selectedValue}
         onChange={dropdownChanged}
-        className="form-control form-control-sm col-sm-10 color text-white bg-dark "
+        className="form-control form-control-sm col-sm-10 bg-dark text-white"
       >
         <option key={0}>Select Genre</option>
+        {props.options.map((item, idx) => (
+          <option key={idx + 1} value={item.id}>
+            {item.name}
+          </option>
+        ))}
       </select>
     </div>
   );
