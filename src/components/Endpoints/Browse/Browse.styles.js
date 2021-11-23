@@ -14,6 +14,11 @@ export const GridContainer = styled.div`
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
   flex-direction: row;
+  grid-template-columns: repeat(2, 300px);
+  row-gap: 80px;
+  @media (min-width: 929px) {
+    grid-template-columns: repeat(4, 300px);
+  }
 `;
 
 export const Grid = styled.div`
