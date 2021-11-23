@@ -1,32 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // Url
-import { fiveServers } from '../../../settings';
+import { fiveServers } from "../../../settings";
 
 // Facade
-import { facade } from '../../../apiFacade';
+import { facade } from "../../../apiFacade";
 
 // Styles
-import { MyBody, Container } from './Browse.styles';
+import {
+  MyBody,
+  Container,
+  Grid,
+  GridContainer,
+  DropdownMenu,
+} from "./Browse.styles";
+import Dropdown from "./Dropdown";
 
-function Browse({ title }) {
-  const [dataFromServer, setDataFromServer] = useState([
-    { value: '', url: '' },
-  ]);
-  useEffect(() => {
-    facade
-      .fetchAny(fiveServers)
-      .then((data) => setDataFromServer(data))
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+function Browse() {
+  const [genres, setGenres] = useState({
+    selectedGenre: "",
+    listOfGenresFromAPI: [],
+  });
+
+  const genreChanged = (val) => {
+    setGenres({
+      selectedGenre: val,
+      listOfGenresFromAPI: genres.listOfGenresFromAPI,
+    });
+  };
+
   return (
     <MyBody>
-      <div>This is the {title} endpoint 😻 </div>
-      <Container>
-        <h3>{dataFromServer[0].value}</h3>
-      </Container>
+      <form onSubmit={""}>
+        <DropdownMenu>
+          <Dropdown
+            label=""
+            options={genres.listOfGenresFromAPI}
+            selectedValue={genres.selectedGenre}
+            changed={genreChanged}
+          />
+        </DropdownMenu>
+      </form>
+
+      <GridContainer container spacing={2}>
+        <img src="https://picsum.photos/200"></img>
+        <img src="https://picsum.photos/200"></img>
+        <img src="https://picsum.photos/200"></img>
+        <img src="https://picsum.photos/200"></img>
+      </GridContainer>
     </MyBody>
   );
 }
