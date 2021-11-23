@@ -7,9 +7,9 @@ import { fiveServers } from '../../../settings';
 import { facade } from '../../../apiFacade';
 
 // Styles
-import { MyBody, Container } from './First.styles';
+import { MyBody, Container } from './MyPlaylists.styles';
 
-function First({ title }) {
+function MyPlaylists({ title }) {
   const [dataFromServer, setDataFromServer] = useState([
     { value: '', url: '' },
   ]);
@@ -25,10 +25,23 @@ function First({ title }) {
     <MyBody>
       <div>This is the {title} endpoint 😻 </div>
       <Container>
-        <h3>{dataFromServer[0].value}</h3>
+{/*        <Grid container spacing={2}>
+        <Grid item xs={6} md={8}>
+          <Item>xs=6 md=8</Item>
+        </Grid>
+        <Grid item xs={6} md={4}>
+          <Item>xs=6 md=4</Item>
+        </Grid>
+          <Grid item xs={6} md={4}>
+            <Item>xs=6 md=4</Item>
+        </Grid>
+          <Grid item xs={6} md={8}>
+            <Item>xs=6 md=8</Item>
+        </Grid>
+        </Grid> */}
       </Container>
     </MyBody>
   );
 }
 
-export default First;
+export default MyPlaylists;

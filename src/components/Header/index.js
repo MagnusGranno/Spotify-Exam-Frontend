@@ -21,15 +21,19 @@ function Header({ loggedIn, setLoggedIn, setLoginCredentials }) {
   return (
     <Wrapper>
       <Content>
-        <h1>StartCode</h1>
+        <h1>
+      <NavLink to="/">Spotilist</NavLink>
+        </h1>
         {loggedIn && (
           <h3>
             🔥 Welcome {sessionStorage.username} your roles:{' '}
             {sessionStorage.getItem('roles').split(',').join(', ')}🔥
           </h3>
         )}
+        
         <Menu>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/myPlaylists">My Playlists</NavLink>
+          <NavLink to="/browse">Browse</NavLink>
           {!loggedIn ? (
             <NavLink to="/login">Login</NavLink>
           ) : (

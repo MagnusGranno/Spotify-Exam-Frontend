@@ -5,12 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Components
 import Header from './components/Header';
-import First from './components/Endpoints/First';
+import Browse from './components/Endpoints/Browse';
 import Home from './components/Home';
 import Login from './components/Login';
-import SideBar from './components/SideBar';
-import UserEndPoint from './components/Endpoints/UserEndPoint';
-import ChuckJokes from './components/Endpoints/ChuckJokes';
+import MyPlaylists from './components/Endpoints/MyPlaylists';
+
 // Styles
 import { GlobalStyle } from './GlobalStyle';
 
@@ -38,7 +37,7 @@ function App() {
         setLoginCredentials={setLoginCredentials}
         setLoggedIn={setLoggedIn}
       />
-      {loggedIn && <SideBar />}
+      {loggedIn}
       <Routes>
         <Route exact path="/" element={<Home loggedIn={loggedIn} />} />
         <Route
@@ -51,11 +50,8 @@ function App() {
             />
           }
         />
-        <Route path="/first" element={<First title={'First'} />} />
-        <Route path="/users" element={<UserEndPoint />} />
-        <Route path="/chuck" element={<ChuckJokes />} />
-        <Route path="/fourth" element={<First title={'Fourth'} />} />
-        <Route path="/fifth" element={<First title={'Fifth'} />} />
+        <Route path="/browse" element={<Browse title={'Browse'} />} />
+        <Route path="/myPlaylists" element={<MyPlaylists title={'MyPlaylists'} />} />
       </Routes>
       <GlobalStyle />
     </Router>
