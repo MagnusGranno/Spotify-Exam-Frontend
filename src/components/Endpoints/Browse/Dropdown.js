@@ -1,4 +1,6 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const Dropdown = (props) => {
   const dropdownChanged = (e) => {
@@ -6,12 +8,12 @@ const Dropdown = (props) => {
   };
 
   return (
-    <div>
-      <label>{props.label}</label>
+    <div className="col-sm-12 form-group row px-0">
+      <label className="form-label col-sm-8 bg-dark text-white">{props.label}</label>
       <select
         value=""
         onChange={dropdownChanged}
-        className="form-control form-control-sm col-sm-10"
+        className="form-control form-control-sm col-sm-10 color text-white bg-dark "
       >
         <option key={0}>Select Genre</option>
       </select>

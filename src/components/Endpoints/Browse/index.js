@@ -7,13 +7,7 @@ import { fiveServers } from "../../../settings";
 import { facade } from "../../../apiFacade";
 
 // Styles
-import {
-  MyBody,
-  Container,
-  Grid,
-  GridContainer,
-  DropdownMenu,
-} from "./Browse.styles";
+import { MyBody, Container, Grid, GridContainer, DropdownMenu } from "./Browse.styles";
 import Dropdown from "./Dropdown";
 
 function Browse() {
@@ -31,16 +25,16 @@ function Browse() {
 
   return (
     <MyBody>
+      <DropdownMenu>
       <form onSubmit={""}>
-        <DropdownMenu>
-          <Dropdown
-            label=""
-            options={genres.listOfGenresFromAPI}
-            selectedValue={genres.selectedGenre}
-            changed={genreChanged}
-          />
-        </DropdownMenu>
+        <Dropdown
+          label=""
+          options={genres.listOfGenresFromAPI}
+          selectedValue={genres.selectedGenre}
+          changed={genreChanged}
+        />
       </form>
+      </DropdownMenu>
 
       <GridContainer container spacing={2}>
         <img src="https://picsum.photos/200"></img>
