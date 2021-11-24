@@ -17,7 +17,7 @@ export const GridContainer = styled.div`
   justify-content: space-evenly;
   flex-direction: row;
   grid-template-columns: repeat(2, 255px);
-  row-gap: 22px;
+  row-gap: 28px;
   @media (min-width: 725px) {
     grid-template-columns: repeat(4, 255px);
   }¨

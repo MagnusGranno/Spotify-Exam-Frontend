@@ -6,16 +6,17 @@ import styled from "styled-components";
 const DivStyler = styled.div`
   position: relative;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   width: 100%;
   select {
     font-family: "Arial";
+    font-size: 18px;
     display: inline-block;
     width: 100%;
     cursor: pointer;
-    padding: 14px 18px;
+    padding: 8px 18px;
     outline: 0;
-    border: 0px solid #000000;
+    border: 2px solid #000000;
     border-radius: 4px;
     background: #e6e6e6;
     color: #7b7b7b;

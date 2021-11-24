@@ -16,7 +16,7 @@ const PlaylistGrid = (props) => {
     <GridContainer>
       {props.options.map((item, idx) => (
         <Grid key={idx + 1} value={item.id}>
-          <div style={{fontSize: '20px'}}>
+          <div style={{fontSize: '16px', fontWeight: 'bold', fontFamily: 'sans-serif'}}>
            {item.name}
           </div>
           <img height="250px" width="250px" src={item.imageUrl}></img>
