@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   --fs-200: 0.875rem;
   --primary-color: 0, 0%, 11%;
   --secondary-color: 122, 39%, 49%;
+  --background-color: 0, 0%, 90%;
 }
 
 
