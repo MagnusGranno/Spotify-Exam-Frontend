@@ -14,7 +14,7 @@ import {
   GridContainer,
   DropdownMenu,
   Btn,
-  BtnDiv,
+  Button,
 } from "./Browse.styles";
 import Dropdown from "./Dropdown";
 
@@ -59,12 +59,8 @@ function Browse() {
         <Grid item xs={8}>
           <img src="https://picsum.photos/200"></img>
           <Btn>
-            <p align="Right">
-              <button>Follow</button>
-            </p>
-            <p align="Left">
-              <button>Like</button>
-            </p>
+              <Button>Follow</Button>
+              <Button>Like</Button>
           </Btn>
         </Grid>
         <Grid item xs={8}>
@@ -78,7 +74,7 @@ function Browse() {
         <img src="https://picsum.photos/200"></img>
       </GridContainer>
       <button />
-    </MyBody>
+      </MyBody>
   );
 }
 

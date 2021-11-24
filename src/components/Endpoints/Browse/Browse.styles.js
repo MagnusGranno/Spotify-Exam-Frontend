@@ -35,22 +35,27 @@ export const DropdownMenu = styled.div`
 `;
 
 export const Btn = styled.div`
-  display: block;
   background-color: hsl(var(--primary-color));
   color: #fff;
+  border: none;
   font-size: 1.2rem;
   border: 0;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
   border-radius: 5px;
   height: 50px;
   width: 100%;
-  padding: 0 20px;
   cursor: pointer;
   box-sizing: border-box;
-
 `;
 
-export const BtnDiv = styled.div`
-  width: 93px;
-  height: auto;
-  display: inline-block;
+export const Button = styled.button`
+background-color: hsl(var(--primary-color));
+color: white;
+font-size: 16px;
+padding: 8px 29px;
+cursor: pointer;
+align-items: flex-start;
+min-width:100px
 `;
