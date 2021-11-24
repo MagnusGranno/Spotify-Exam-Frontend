@@ -13,6 +13,8 @@ import {
   Grid,
   GridContainer,
   DropdownMenu,
+  Btn,
+  BtnDiv,
 } from "./Browse.styles";
 import Dropdown from "./Dropdown";
 
@@ -54,11 +56,28 @@ function Browse() {
       </DropdownMenu>
 
       <GridContainer container spacing={2}>
+        <Grid item xs={8}>
+          <img src="https://picsum.photos/200"></img>
+          <Btn>
+            <p align="Right">
+              <button>Follow</button>
+            </p>
+            <p align="Left">
+              <button>Like</button>
+            </p>
+          </Btn>
+        </Grid>
+        <Grid item xs={8}>
+          <img src="https://picsum.photos/200"></img>
+        </Grid>
+        <img src="https://picsum.photos/200"></img>
+        <img src="https://picsum.photos/200"></img>
         <img src="https://picsum.photos/200"></img>
         <img src="https://picsum.photos/200"></img>
         <img src="https://picsum.photos/200"></img>
         <img src="https://picsum.photos/200"></img>
       </GridContainer>
+      <button />
     </MyBody>
   );
 }
