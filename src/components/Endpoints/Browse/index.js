@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // Url
-import { fetchCategories } from "../../../settings";
-
-// Facade
-import { facade } from "../../../apiFacade";
+import { fetchCategories, fetchByCategory } from "../../../settings";
 
 // Styles
-import {
-  MyBody,
-  Container,
-  Grid,
-  GridContainer,
-  DropdownMenu,
-  Btn,
-  Button,
-} from "./Browse.styles";
+import { MyBody, DropdownMenu } from "./Browse.styles";
 import Dropdown from "./Dropdown";
+import PlaylistGrid from "./PlaylistGrid";
 
 function Browse() {
   const [genres, setGenres] = useState({
     selectedGenre: "",
     listOfGenresFromAPI: [],
+  });
+
+  const [playlist, setPlaylist] = useState({
+    selectedPlaylist: "",
+    listOfPlaylistFromAPI: [],
   });
 
   useEffect(() => {
@@ -40,41 +35,29 @@ function Browse() {
       selectedGenre: val,
       listOfGenresFromAPI: genres.listOfGenresFromAPI,
     });
+    axios(`${fetchByCategory}${val}`, {
+      method: "GET",
+    }).then((playlistResponse) => {
+      setPlaylist({
+        selectedPlaylist: playlist.selectedPlaylist,
+        listOfPlaylistFromAPI: playlistResponse.data,
+      });
+    });
+    console.log(val);
   };
 
   return (
     <MyBody>
       <DropdownMenu>
-        <form onSubmit={""}>
-          <Dropdown
-            label=""
-            options={genres.listOfGenresFromAPI}
-            selectedValue={genres.selectedGenre}
-            changed={genreChanged}
-          />
-        </form>
+        <Dropdown
+          label=""
+          options={genres.listOfGenresFromAPI}
+          selectedValue={genres.selectedGenre}
+          changed={genreChanged}
+        />
       </DropdownMenu>
-
-      <GridContainer container spacing={2}>
-        <Grid item xs={8}>
-          <img src="https://picsum.photos/200"></img>
-          <Btn>
-              <Button>Follow</Button>
-              <Button>Like</Button>
-          </Btn>
-        </Grid>
-        <Grid item xs={8}>
-          <img src="https://picsum.photos/200"></img>
-        </Grid>
-        <img src="https://picsum.photos/200"></img>
-        <img src="https://picsum.photos/200"></img>
-        <img src="https://picsum.photos/200"></img>
-        <img src="https://picsum.photos/200"></img>
-        <img src="https://picsum.photos/200"></img>
-        <img src="https://picsum.photos/200"></img>
-      </GridContainer>
-      <button />
-      </MyBody>
+      <PlaylistGrid options={playlist.listOfPlaylistFromAPI} />
+    </MyBody>
   );
 }
 

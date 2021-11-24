@@ -22,7 +22,7 @@ export const GridContainer = styled.div`
 `;
 
 export const Grid = styled.div`
-  color: blue;
+  color: green;
 `;
 
 export const DropdownMenu = styled.div`
