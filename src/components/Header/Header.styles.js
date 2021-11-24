@@ -15,7 +15,6 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-around;
   h1 {
-    color: hsl(var(--secondary-color));
     font-size: var(--fs-500);
   }
 
@@ -30,6 +29,9 @@ export const Content = styled.div`
       font-size: var(--fs-700);
     }
   }
+  .header_nav:hover {
+    color: #dcdcdd;
+  } 
 `;
 
 export const Menu = styled.div`

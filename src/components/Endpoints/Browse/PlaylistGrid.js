@@ -2,13 +2,11 @@ import React from 'react';
 import {
   Grid,
   Btn,
-  Button,
   GridContainer,
   LeftButton,
   RightButton,
   GridImg,
 } from './Browse.styles';
-import styled from 'styled-components';
 
 function Follow() {
   console.log('do follow');
@@ -19,8 +17,6 @@ function Like() {
 }
 
 const PlaylistGrid = (props) => {
-  let pictureVar = 8;
-
   return (
     <GridContainer>
       {props.options.map((item, idx) => (

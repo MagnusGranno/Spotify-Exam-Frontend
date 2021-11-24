@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -48,7 +48,7 @@ body {
     padding: 0;
   }
   .active {
-   color: hsl(var(--secondary-color));
+    color: hsl(var(--secondary-color));
   }
 }
 

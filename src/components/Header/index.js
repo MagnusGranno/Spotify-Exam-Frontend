@@ -28,7 +28,9 @@ function Header({ loggedIn, setLoggedIn, setLoginCredentials }) {
     <Wrapper>
       <Content>
         <h1>
-          <NavLink to="/">Spotilist</NavLink>
+          <NavLink className="header_nav" to="/">
+            Spotilist
+          </NavLink>
         </h1>
         <Menu>
           <NavLink className="header_nav" to="/myPlaylists">
