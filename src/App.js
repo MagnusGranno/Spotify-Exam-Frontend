@@ -51,7 +51,10 @@ function App() {
           }
         />
         <Route path="/browse" element={<Browse title={'Browse'} />} />
-        <Route path="/myPlaylists" element={<MyPlaylists title={'MyPlaylists'} />} />
+        <Route
+          path="/myPlaylists"
+          element={<MyPlaylists title={'MyPlaylists'} />}
+        />
       </Routes>
       <GlobalStyle />
     </Router>

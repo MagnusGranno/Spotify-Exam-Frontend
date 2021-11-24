@@ -1,16 +1,61 @@
 import React, { useState, useEffect } from 'react';
-
-// Facade
-import { facade } from '../../../apiFacade';
+import axios from 'axios';
+// Url
+import { fetchCategories, fetchByCategory } from '../../../settings';
 
 // Styles
-import { MyBody, Container } from './Browse.styles';
+import { MyBody, DropdownMenu } from './Browse.styles';
+import Dropdown from './Dropdown';
+import PlaylistGrid from './PlaylistGrid';
 
-function Browse({ title }) {
+function Browse() {
+  const [genres, setGenres] = useState({
+    selectedGenre: '',
+    listOfGenresFromAPI: [],
+  });
+
+  const [playlist, setPlaylist] = useState({
+    selectedPlaylist: '',
+    listOfPlaylistFromAPI: [],
+  });
+
+  useEffect(() => {
+    axios(fetchCategories, {
+      method: 'GET',
+    }).then((genreResponse) => {
+      setGenres({
+        selectedGenre: genres.selectedGenre,
+        listOfGenresFromAPI: genreResponse.data,
+      });
+    });
+  }, []);
+
+  const genreChanged = (val) => {
+    setGenres({
+      selectedGenre: val,
+      listOfGenresFromAPI: genres.listOfGenresFromAPI,
+    });
+    axios(`${fetchByCategory}${val}`, {
+      method: 'GET',
+    }).then((playlistResponse) => {
+      setPlaylist({
+        selectedPlaylist: playlist.selectedPlaylist,
+        listOfPlaylistFromAPI: playlistResponse.data,
+      });
+    });
+    console.log(val);
+  };
+
   return (
     <MyBody>
-      <div>This is the {title} endpoint 😻 </div>
-      <Container></Container>
+      <DropdownMenu>
+        <Dropdown
+          options={genres.listOfGenresFromAPI}
+          selectedValue={genres.selectedGenre}
+          changed={genreChanged}
+        />
+      </DropdownMenu>
+      <PlaylistGrid options={playlist.listOfPlaylistFromAPI} />
     </MyBody>
   );
 }
