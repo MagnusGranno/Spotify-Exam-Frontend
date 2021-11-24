@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// Url
-import { fiveServers } from '../../../settings';
-
 // Facade
 import { facade } from '../../../apiFacade';
 
@@ -10,23 +7,10 @@ import { facade } from '../../../apiFacade';
 import { MyBody, Container } from './Browse.styles';
 
 function Browse({ title }) {
-  const [dataFromServer, setDataFromServer] = useState([
-    { value: '', url: '' },
-  ]);
-  useEffect(() => {
-    facade
-      .fetchAny(fiveServers)
-      .then((data) => setDataFromServer(data))
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
   return (
     <MyBody>
       <div>This is the {title} endpoint 😻 </div>
-      <Container>
-        <h3>{dataFromServer[0].value}</h3>
-      </Container>
+      <Container></Container>
     </MyBody>
   );
 }
