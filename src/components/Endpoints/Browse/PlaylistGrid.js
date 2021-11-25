@@ -59,11 +59,3 @@ const PlaylistGrid = ({ options, showModal, setShowModal }) => {
 };
 
 export default PlaylistGrid;
-
-// <Grid item xs={8}>
-// <img src={props}></img>
-// <Btn> {item.imageUrl}
-//   <Button onClick={Follow}>Follow</Button>
-//   <Button onClick={Like}>Like</Button>
-// </Btn>
-// </Grid>
