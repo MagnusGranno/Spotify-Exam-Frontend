@@ -7,7 +7,7 @@ const DivStyler = styled.div`
   font-size: var(--fs-400);
   position: relative;
   display: inline-block;
-  margin: 1rem 0;
+  margin: 0 0 0 1rem;
   width: 100%;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

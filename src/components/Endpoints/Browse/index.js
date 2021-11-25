@@ -53,6 +53,7 @@ function Browse() {
   return (
     <MyBody>
       <DropdownMenu>
+        <h2>Choose Genre</h2>
         <Dropdown
           options={genreList}
           selectedValue={genre}

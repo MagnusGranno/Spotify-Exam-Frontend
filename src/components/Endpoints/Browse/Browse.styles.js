@@ -32,6 +32,8 @@ export const GridImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 12px 12px 0 0;
+
+  cursor: pointer;
 `;
 
 export const Grid = styled.div`
@@ -44,12 +46,20 @@ export const Grid = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  :hover {
+    transform: scale(1.1);
+  }
+  transition-duration: 0.2s;
 `;
 
 export const DropdownMenu = styled.div`
   margin: 0 auto;
   margin-bottom: 2rem;
   width: max(20vw, 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Btn = styled.div`
