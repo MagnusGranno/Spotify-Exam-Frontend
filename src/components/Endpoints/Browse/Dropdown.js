@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const DivStyler = styled.div`
   font-size: var(--fs-400);
-  position: relative;
+
   display: inline-block;
   margin: 0 0 0 1rem;
   width: 100%;

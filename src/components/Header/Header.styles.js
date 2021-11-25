@@ -4,6 +4,9 @@ export const Wrapper = styled.div`
   background-color: hsl(var(--primary-color));
   height: 100px;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  z-index: 1;
 `;
 
 export const Content = styled.div`
@@ -31,7 +34,7 @@ export const Content = styled.div`
   }
   .header_nav:hover {
     color: #dcdcdd;
-  } 
+  }
 `;
 
 export const Menu = styled.div`

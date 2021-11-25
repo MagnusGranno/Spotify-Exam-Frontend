@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MyBody = styled.div`
   height: 100%;
   padding-bottom: 2rem;
-  padding: 2rem 1rem;
+  padding: 10rem 1rem;
 `;
 
 export const Container = styled.div`
@@ -37,9 +37,8 @@ export const GridImg = styled.img`
 `;
 
 export const Grid = styled.div`
-  background-color: white;
-  box-shadow: 0px 3px 8px;
-  box-shadow: 10px 5px 5px 2pxrgba (0, 0, 0, 0.24);
+  background-color: hsl(var(--primary-color));
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 12px;
   color: hsl(var(--primary-color));
 
@@ -77,12 +76,13 @@ export const LeftButton = styled.button`
   font-size: var(--fs-400);
   cursor: pointer;
   border: none;
+  overflow: hidden;
   align-items: flex-start;
   width: 100%;
   border-radius: 0 0 0 12px;
 
   :hover {
-    background-color: hsl(var(--primary-color), 0.8);
+    background-color: hsl(var(--secondary-color), 0.8);
   }
 `;
 
@@ -93,10 +93,11 @@ export const RightButton = styled.button`
   font-size: var(--fs-400);
   cursor: pointer;
   border: none;
+  overflow: hidden;
   width: 100%;
   align-items: flex-start;
   border-radius: 0 0 12px 0;
   :hover {
-    background-color: hsl(var(--primary-color), 0.8);
+    background-color: hsl(var(--secondary-color), 0.8);
   }
 `;
