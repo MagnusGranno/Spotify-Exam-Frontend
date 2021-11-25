@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MyBody = styled.div`
   margin-left: 0px;
-  margin-top: 60px;
+  padding-top: 10rem;
 `;
 
 export const Container = styled.div`
@@ -17,8 +17,8 @@ export const GridContainer = styled.div`
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
   flex-direction: row;
-  `
+`;
 
 export const Grid = styled.div`
-color: blue;  
-`
+  color: blue;
+`;

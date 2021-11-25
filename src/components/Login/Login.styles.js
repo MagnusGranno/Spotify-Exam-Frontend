@@ -11,6 +11,7 @@ const sharedStyles = css`
 
 export const Wrapper = styled.div`
   height: 100vh;
+  padding-top: 10rem;
 `;
 
 export const StyledFormWrapper = styled.div`

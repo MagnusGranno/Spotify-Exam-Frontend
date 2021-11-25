@@ -5,12 +5,15 @@ import { fetchCategories, fetchByCategory } from '../../../settings';
 
 // Styles
 import { MyBody, DropdownMenu } from './Browse.styles';
+// Components
 import Dropdown from './Dropdown';
 import PlaylistGrid from './PlaylistGrid';
+import PlaylistModal from '../../PlaylistModal';
 
 function Browse() {
   const [genre, setGenre] = useState('');
   const [genreList, setGenreList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const [playlist, setPlaylist] = useState({
     selectedPlaylist: '',
@@ -60,7 +63,11 @@ function Browse() {
           changed={genreChanged}
         />
       </DropdownMenu>
-      <PlaylistGrid options={playlistList} />
+      <PlaylistGrid
+        options={playlistList}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </MyBody>
   );
 }

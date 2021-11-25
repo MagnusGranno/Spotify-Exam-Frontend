@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   Btn,
@@ -7,7 +7,9 @@ import {
   RightButton,
   GridImg,
 } from './Browse.styles';
+import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 
+import PlaylistModal from '../../PlaylistModal';
 function Follow() {
   console.log('do follow');
 }
@@ -16,28 +18,44 @@ function Like() {
   console.log('do Like');
 }
 
-const PlaylistGrid = (props) => {
+const PlaylistGrid = ({ options, showModal, setShowModal }) => {
+  const [playlistId, setPlaylistId] = useState('');
+  const [playlistName, setPlaylistName] = useState('');
+
+  const onPictureClick = (id, name) => {
+    setPlaylistId(id);
+    setShowModal(!showModal);
+    setPlaylistName(name);
+    console.log(options);
+  };
+
   return (
-    <GridContainer>
-      {props.options.map((item, idx) => (
-        <Grid key={idx + 1} value={item.id}>
-          <GridImg src={item.imageUrl} alt="thumb" />
-          <Btn>
-            <LeftButton onClick={Follow}>Follow</LeftButton>
-            <RightButton onClick={Like}>Like</RightButton>
-          </Btn>
-        </Grid>
-      ))}
-    </GridContainer>
+    <>
+      {showModal && (
+        <PlaylistModal
+          playlistID={playlistId}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          playlistName={playlistName}
+        />
+      )}
+      <GridContainer>
+        {options.map((item, idx) => (
+          <Grid key={idx + 1} value={item.id}>
+            <GridImg
+              src={item.imageUrl}
+              alt="thumb"
+              onClick={() => onPictureClick(item.id, item.name)}
+            />
+            <Btn>
+              <LeftButton>Follow</LeftButton>
+              <RightButton>Like</RightButton>
+            </Btn>
+          </Grid>
+        ))}
+      </GridContainer>
+    </>
   );
 };
 
 export default PlaylistGrid;
-
-// <Grid item xs={8}>
-// <img src={props}></img>
-// <Btn> {item.imageUrl}
-//   <Button onClick={Follow}>Follow</Button>
-//   <Button onClick={Like}>Like</Button>
-// </Btn>
-// </Grid>
