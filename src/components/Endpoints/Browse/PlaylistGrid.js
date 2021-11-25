@@ -1,28 +1,30 @@
-import React from "react";
-import { Grid, Btn, Button, GridContainer } from "./Browse.styles";
+import React from 'react';
+import {
+  Grid,
+  Btn,
+  GridContainer,
+  LeftButton,
+  RightButton,
+  GridImg,
+} from './Browse.styles';
 
 function Follow() {
-  console.log("do follow");
+  console.log('do follow');
 }
 
 function Like() {
-  console.log("do Like");
+  console.log('do Like');
 }
 
 const PlaylistGrid = (props) => {
-  let pictureVar = 8;
-
   return (
     <GridContainer>
       {props.options.map((item, idx) => (
         <Grid key={idx + 1} value={item.id}>
-          <div style={{fontSize: '16px', fontWeight: 'bold', fontFamily: 'sans-serif'}}>
-           {item.name}
-          </div>
-          <img height="250px" width="250px" src={item.imageUrl}></img>
+          <GridImg src={item.imageUrl} alt="thumb" />
           <Btn>
-            <Button onClick={Follow}>Follow</Button>
-            <Button onClick={Like}>Like</Button>
+            <LeftButton onClick={Follow}>Follow</LeftButton>
+            <RightButton onClick={Like}>Like</RightButton>
           </Btn>
         </Grid>
       ))}

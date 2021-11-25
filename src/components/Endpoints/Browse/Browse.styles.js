@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MyBody = styled.div`
-  margin-left: 0px;
-  background-color: #D3D3D3;
+  height: 100%;
+  padding-bottom: 2rem;
+  padding: 2rem 1rem;
 `;
 
 export const Container = styled.div`
@@ -13,51 +14,89 @@ export const Container = styled.div`
 export const GridContainer = styled.div`
   display: grid;
   text-align: center;
-  grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
-  flex-direction: row;
-  grid-template-columns: repeat(2, 255px);
-  row-gap: 28px;
-  @media (min-width: 725px) {
-    grid-template-columns: repeat(4, 255px);
-  }¨
+  grid-template-columns: repeat(2, minmax(200px, 225px));
+  gap: 2rem;
+  @media (min-width: 820px) {
+    grid-template-columns: repeat(3, minmax(150px, 255px));
+  }
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(5, minmax(150px, 300px));
+  }
+  :last-child {
+    margin-bottom: 2rem;
+  }
+`;
+
+export const GridImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 12px 12px 0 0;
+
+  cursor: pointer;
 `;
 
 export const Grid = styled.div`
-  color: green;
+  background-color: white;
+  box-shadow: 0px 3px 8px;
+  box-shadow: 10px 5px 5px 2pxrgba (0, 0, 0, 0.24);
+  border-radius: 12px;
+  color: hsl(var(--primary-color));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  :hover {
+    transform: scale(1.1);
+  }
+  transition-duration: 0.2s;
 `;
 
 export const DropdownMenu = styled.div`
-  margin: auto;
-  width: 25%;
-  length: 1000px;
-  padding: 4px;
-  color: 0, 0%, 11%;
-  background-color: 122, 39%, 49%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  width: max(20vw, 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Btn = styled.div`
-  background-color: hsl(var(--primary-color));
   color: #fff;
-  border: none;
-  text-align: center;
-  text-decoration: none;
   display: flex;
-  border-radius: 25x;
-  height: 50px;
-  width: 80%;
-  cursor: pointer;
-    
+  border-radius: 12px;
+  width: 100%;
+  max-width: 300px;
 `;
 
-export const Button = styled.button`
-background-color: hsl(var(--primary-color));
-color: white;
-padding: 8px;
-font-size: 20px;
-cursor: pointer;
-border-style: solid;
-border-width: 1px;
-align-items: flex-start;
-min-width:126px
+export const LeftButton = styled.button`
+  background-color: hsl(var(--primary-color));
+  color: white;
+  padding: 1rem;
+  font-size: var(--fs-400);
+  cursor: pointer;
+  border: none;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: 0 0 0 12px;
+
+  :hover {
+    background-color: hsl(var(--primary-color), 0.8);
+  }
+`;
+
+export const RightButton = styled.button`
+  background-color: hsl(var(--primary-color));
+  color: white;
+  padding: 8px;
+  font-size: var(--fs-400);
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  align-items: flex-start;
+  border-radius: 0 0 12px 0;
+  :hover {
+    background-color: hsl(var(--primary-color), 0.8);
+  }
 `;

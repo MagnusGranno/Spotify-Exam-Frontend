@@ -1,62 +1,66 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // Url
-import { fetchCategories, fetchByCategory } from "../../../settings";
+import { fetchCategories, fetchByCategory } from '../../../settings';
 
 // Styles
-import { MyBody, DropdownMenu } from "./Browse.styles";
-import Dropdown from "./Dropdown";
-import PlaylistGrid from "./PlaylistGrid";
+import { MyBody, DropdownMenu } from './Browse.styles';
+import Dropdown from './Dropdown';
+import PlaylistGrid from './PlaylistGrid';
 
 function Browse() {
-  const [genres, setGenres] = useState({
-    selectedGenre: "",
-    listOfGenresFromAPI: [],
-  });
+  const [genre, setGenre] = useState('');
+  const [genreList, setGenreList] = useState([]);
 
   const [playlist, setPlaylist] = useState({
-    selectedPlaylist: "",
+    selectedPlaylist: '',
     listOfPlaylistFromAPI: [],
   });
+  const [playlistList, setPlayListList] = useState([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState([]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('genre')) {
+      setGenre(sessionStorage.getItem('genre'));
+    } else {
+      setGenre('toplists');
+    }
+    axios(`${fetchByCategory}${genre}`, {
+      method: 'GET',
+    }).then((playlistResponse) => {
+      setPlayListList(playlistResponse.data);
+    });
+  }, [genre]);
 
   useEffect(() => {
     axios(fetchCategories, {
-      method: "GET",
+      method: 'GET',
     }).then((genreResponse) => {
-      setGenres({
-        selectedGenre: genres.selectedGenre,
-        listOfGenresFromAPI: genreResponse.data,
-      });
+      setGenreList(genreResponse.data);
     });
-  }, [genres.selectedGenre]);
+  }, []);
 
   const genreChanged = (val) => {
-    setGenres({
-      selectedGenre: val,
-      listOfGenresFromAPI: genres.listOfGenresFromAPI,
-    });
+    setGenre(val);
+    sessionStorage.setItem('genre', val);
     axios(`${fetchByCategory}${val}`, {
-      method: "GET",
+      method: 'GET',
     }).then((playlistResponse) => {
-      setPlaylist({
-        selectedPlaylist: playlist.selectedPlaylist,
-        listOfPlaylistFromAPI: playlistResponse.data,
-      });
+      setPlayListList(playlistResponse.data);
     });
-    console.log(val);
   };
 
   return (
     <MyBody>
       <DropdownMenu>
+        <h2>Choose Genre</h2>
         <Dropdown
-          label=""
-          options={genres.listOfGenresFromAPI}
-          selectedValue={genres.selectedGenre}
+          options={genreList}
+          selectedValue={genre}
           changed={genreChanged}
         />
       </DropdownMenu>
-      <PlaylistGrid options={playlist.listOfPlaylistFromAPI} />
+      <PlaylistGrid options={playlistList} />
     </MyBody>
   );
 }
