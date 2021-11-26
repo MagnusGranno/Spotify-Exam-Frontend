@@ -60,18 +60,9 @@ const PlaylistModal = ({
         <ModalTable>
           <thead>
             <tr>
-              <th colSpan="2" className="PlayTitle">
+              <th colSpan="4" className="PlayTitle">
                 {playlistName}
               </th>
-              <div>
-                <a
-                  href={`https://open.spotify.com/playlist/${playlistID}`}
-                  target="_blank"
-                >
-                  <ModalArrow src={arrow} alt="arrow" />
-                  Open in Spotify
-                </a>
-              </div>
             </tr>
             <tr>
               <th>#</th>
@@ -85,9 +76,14 @@ const PlaylistModal = ({
               <tr key={track.id}>
                 <td>{count++}</td>
                 <td>{track.name}</td>
-                <td>{track.artists.map((item, i) => (
-                  <>{track.artists.length - 1 === i ? item.name : item.name + ' & '} </>
-                ))}
+                <td>
+                  {track.artists.map((item, i) => (
+                    <>
+                      {track.artists.length - 1 === i
+                        ? item.name
+                        : item.name + " & "}{" "}
+                    </>
+                  ))}
                 </td>
                 <td>{miliToMin(track.duration_ms)}</td>
               </tr>
