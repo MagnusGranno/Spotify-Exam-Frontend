@@ -44,6 +44,7 @@ const DivStyler = styled.div`
 `;
 
 const Dropdown = (props) => {
+  
   const dropdownChanged = (e) => {
     props.changed(e.target.value);
   };
@@ -52,9 +53,9 @@ const Dropdown = (props) => {
     <DivStyler>
       <label>{props.label}</label>
       <select value={props.selectedValue} onChange={dropdownChanged}>
-        <option key={0}>Select Genre</option>
-        {props.options.map((item, idx) => (
-          <option key={idx + 1} value={item.id}>
+        <option>Select Genre</option>
+        {props.options.map((item, i) => (
+          <option key={i} value={item.id}>
             {item.name}
           </option>
         ))}

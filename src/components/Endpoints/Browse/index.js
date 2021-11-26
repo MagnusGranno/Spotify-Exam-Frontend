@@ -24,15 +24,14 @@ function Browse() {
 
   useEffect(() => {
     if (sessionStorage.getItem('genre')) {
-      setGenre(sessionStorage.getItem('genre'));
-    } else {
-      setGenre('toplists');
-    }
-    axios(`${fetchByCategory}${genre}`, {
-      method: 'GET',
-    }).then((playlistResponse) => {
-      setPlayListList(playlistResponse.data);
-    });
+      // setGenre(sessionStorage.getItem('genre'));
+      axios(`${fetchByCategory}${sessionStorage.getItem('genre')}`, {
+        method: 'GET',
+      }).then((playlistResponse) => {
+        setPlayListList(playlistResponse.data);
+      });
+    } 
+    
   }, [genre]);
 
   useEffect(() => {
@@ -41,16 +40,18 @@ function Browse() {
     }).then((genreResponse) => {
       setGenreList(genreResponse.data);
     });
+    if (!sessionStorage.getItem('genre')) {
+      axios(`${fetchByCategory}toplists`, {
+        method: 'GET',
+      }).then((playlistResponse) => {
+        setPlayListList(playlistResponse.data);
+      });
+    }
   }, []);
 
   const genreChanged = (val) => {
     setGenre(val);
     sessionStorage.setItem('genre', val);
-    axios(`${fetchByCategory}${val}`, {
-      method: 'GET',
-    }).then((playlistResponse) => {
-      setPlayListList(playlistResponse.data);
-    });
   };
 
   return (
