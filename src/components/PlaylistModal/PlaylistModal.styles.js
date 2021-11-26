@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -76,6 +76,7 @@ export const ModalCross = styled.img`
   width: 25px;
   height: 25px;
   cursor: pointer;
+  position: fixed;
 `;
 export const ModalArrow = styled.img`
   height: 40px;
