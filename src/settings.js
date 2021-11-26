@@ -9,3 +9,7 @@ export const fetchByCategory =
 
 export const fetchPlayList =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify';
+  
+export const signup = 'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login/create';
+
+export const login = 'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login'

@@ -56,7 +56,7 @@ function App() {
           path="/myPlaylists"
           element={<MyPlaylists title={'MyPlaylists'} />}
         />
-        <Route path="/signup" element={<Signup title={'signup'}/>} />
+        <Route path="/signup" element={<Signup title={'signup'} setLoginCredentials={setLoginCredentials} setLoggedIn={setLoggedIn}/>} />
       </Routes>
       <GlobalStyle />
     </Router>

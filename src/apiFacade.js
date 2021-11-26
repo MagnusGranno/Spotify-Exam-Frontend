@@ -35,7 +35,7 @@ function apiFacade() {
     return fetch(URL + someUrl, options).then(handleHtttpErrors);
   };
   const setToken = (token) => {
-    localStorage.setItem('jwtToken', token);
+    sessionStorage.setItem('jwtToken', token);
 
     const jwtData = token.split('.')[1];
     const decodedJwtJsonData = window.atob(jwtData);
@@ -45,14 +45,14 @@ function apiFacade() {
     sessionStorage.setItem('roles', JSON.stringify(roles));
   };
   const getToken = () => {
-    return localStorage.getItem('jwtToken');
+    return sessionStorage.getItem('jwtToken');
   };
   const loggedIn = () => {
     const loggedIn = getToken() !== null;
     return loggedIn;
   };
   const logout = () => {
-    localStorage.removeItem('jwtToken');
+    sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('roles');
   };
