@@ -9,6 +9,7 @@ import Browse from './components/Endpoints/Browse';
 import Home from './components/Home';
 import Login from './components/Login';
 import MyPlaylists from './components/Endpoints/MyPlaylists';
+import Signup from './components/Signup';
 
 // Styles
 import { GlobalStyle } from './GlobalStyle';
@@ -55,6 +56,7 @@ function App() {
           path="/myPlaylists"
           element={<MyPlaylists title={'MyPlaylists'} />}
         />
+        <Route path="/signup" element={<Signup title={'signup'}/>} />
       </Routes>
       <GlobalStyle />
     </Router>

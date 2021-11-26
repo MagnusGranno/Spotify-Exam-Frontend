@@ -86,10 +86,7 @@ const PlaylistModal = ({
                 <td>{count++}</td>
                 <td>{track.name}</td>
                 <td>{track.artists.map((item, i) => (
-                  <>
-                 {track.artists.length - 1 === i ? item.name : item.name + ' & '}
-                  
-                  </>
+                  <>{track.artists.length - 1 === i ? item.name : item.name + ' & '} </>
                 ))}
                 </td>
                 <td>{miliToMin(track.duration_ms)}</td>
