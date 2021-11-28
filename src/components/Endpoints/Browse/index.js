@@ -24,14 +24,13 @@ function Browse() {
 
   useEffect(() => {
     if (sessionStorage.getItem('genre')) {
-      // setGenre(sessionStorage.getItem('genre'));
+      setGenre(sessionStorage.getItem('genre'));
       axios(`${fetchByCategory}${sessionStorage.getItem('genre')}`, {
         method: 'GET',
       }).then((playlistResponse) => {
         setPlayListList(playlistResponse.data);
       });
-    } 
-    
+    }
   }, [genre]);
 
   useEffect(() => {
