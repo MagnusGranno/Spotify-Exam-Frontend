@@ -46,6 +46,16 @@ export const ModalTable = styled.table`
   margin-left: 1rem;
   margin-right: 1rem;
   overflow: hidden;
+  
+  video{
+    /* margin: 0; */
+    height:40px;
+    width: 200px;
+  }
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display {
+    display: none;
+  }
 
   thead {
     text-align: left;

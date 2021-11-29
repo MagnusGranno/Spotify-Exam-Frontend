@@ -65,46 +65,25 @@ export const DropdownMenu = styled.div`
 export const Btn = styled.div`
   color: #fff;
   display: flex;
-  border-radius: 12px;
+  border-radius:0 0 12px 12px;
+  overflow: hidden;
   width: 100%;
   max-width: 300px;
 `;
 
-export const LeftButton = styled.button`
+export const Button = styled.a`
   background-color: hsl(var(${props => props.bgColor}));
   color: white;
   padding: 1rem;
   font-size: var(--fs-400);
   cursor: pointer;
   border: none;
-  overflow: hidden;
-  align-items: flex-start;
-  width: 100%;
-  border-radius: 0 0 0 12px;
-
-  :hover {
-    background-color: hsl(var(${props => props.hoverColor}), 0.8);
-  }
-`;
-
-export const RightButton = styled.a`
-  background-color: hsl(var(--primary-color));
-  color: white;
-  padding: 8px;
-  font-size: var(--fs-400);
-  cursor: pointer;
-  border: none;
-  overflow: hidden;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 12px 0;
+  width: 100%;
+
   :hover {
-    background-color: hsl(var(--secondary-color), 0.8);
-  }
-  a {
-    width: 100%;
-    height: 100%;
+    background-color: hsl(var(${props => props.hoverColor}), 0.8);
   }
 `;

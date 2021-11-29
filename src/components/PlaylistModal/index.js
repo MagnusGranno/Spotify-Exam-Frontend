@@ -22,6 +22,8 @@ const PlaylistModal = ({
   playlistName,
 }) => {
   const [tracks, setTracks] = useState([]);
+  let volume = 0.5;
+  
 
   let count = 1;
 
@@ -50,6 +52,7 @@ const PlaylistModal = ({
 
   const outSideClick = () => {
     setShowModal(!showModal);
+    
   };
   return (
     <ModalBackdrop>
@@ -69,6 +72,7 @@ const PlaylistModal = ({
               <th>Name</th>
               <th>Artists</th>
               <th>Duration</th>
+              <th>Preview</th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +90,20 @@ const PlaylistModal = ({
                   ))}
                 </td>
                 <td>{miliToMin(track.duration_ms)}</td>
+                <td>
+                  {track.preview_url && (
+                    <video
+                      controls
+                      controlslist="nodownload noplaybackrate"
+                      volume={0.001}
+                    >
+                      <source
+                        src={track.preview_url}
+                        type="audio/mpeg"
+                      ></source>
+                    </video>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

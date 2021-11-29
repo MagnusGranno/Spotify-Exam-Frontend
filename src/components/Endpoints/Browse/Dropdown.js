@@ -53,7 +53,7 @@ const Dropdown = (props) => {
     <DivStyler>
       <label>{props.label}</label>
       <select value={props.selectedValue} onChange={dropdownChanged}>
-        <option>Select Genre</option>
+        <option hidden>Select Genre</option>
         {props.options.map((item, i) => (
           <option key={i} value={item.id}>
             {item.name}

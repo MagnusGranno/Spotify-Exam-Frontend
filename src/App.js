@@ -51,6 +51,7 @@ function App() {
         loginCredentials={loginCredentials}
         setLoginCredentials={setLoginCredentials}
         setLoggedIn={setLoggedIn}
+        setUserPlaylists={setUserPlaylists}
       />
       <Routes>
         <Route exact path="/" element={<Home loggedIn={loggedIn} />} />
@@ -76,7 +77,8 @@ function App() {
               genreList={genreList}
               setGenreList={setGenreList}
               userPlaylists={userPlaylists}
-              setUserPlaylists={setUserPlaylists} />
+              setUserPlaylists={setUserPlaylists}
+              loggedIn={loggedIn} />
           }
         />
         <Route

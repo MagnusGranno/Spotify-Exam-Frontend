@@ -20,7 +20,8 @@ function Browse({
   genreList,
   setGenreList,
   userPlaylists,
-  setUserPlaylists
+  setUserPlaylists,
+  loggedIn
 }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -78,6 +79,7 @@ function Browse({
         loginCredentials={loginCredentials}
         userPlaylists={userPlaylists}
         setUserPlaylists={setUserPlaylists}
+        loggedIn={loggedIn}
         
       />
     </MyBody>

@@ -6,6 +6,7 @@ import {
   LeftButton,
   RightButton,
   GridImg,
+  Button
 } from "./Browse.styles";
 import { Link, useRouteMatch, Switch, Route } from "react-router-dom";
 
@@ -20,6 +21,7 @@ const PlaylistGrid = ({
   loginCredentials,
   userPlaylists,
   setUserPlaylists,
+  loggedIn
 }) => {
   const [playlistId, setPlaylistId] = useState("");
   const [playlistName, setPlaylistName] = useState("");
@@ -71,31 +73,33 @@ const PlaylistGrid = ({
               onClick={() => onPictureClick(item.id, item.name)}
             />
             <Btn>
-              {userPlaylists.find((id) => id.id === item.id) ? (
-                <LeftButton
+              {loggedIn && (userPlaylists.find((id) => id.id === item.id) ? (
+                <Button
                   id={item.id}
                   onClick={unFollow}
                   bgColor="--secondary-color"
                   hoverColor="--secondary-color"
                 >
                   Unfollow
-                </LeftButton>
+                </Button>
               ) : (
-                <LeftButton
+                <Button
                   id={item.id}
                   onClick={follow}
                   bgColor="--primary-color"
                   hoverColor="--secondary-color"
                 >
                   Follow
-                </LeftButton>
-              )}
-              <RightButton
+                </Button>
+              ))}
+              <Button
                 href={`https://open.spotify.com/playlist/${item.id}`}
                 target="_blank"
+                bgColor="--primary-color"
+                hoverColor="--secondary-color"
               >
                 Play
-              </RightButton>
+              </Button>
             </Btn>
           </Grid>
         ))}

@@ -15,12 +15,13 @@ import {
   ProfileLink,
 } from './Header.styles';
 
-function Header({ loggedIn, setLoggedIn, setLoginCredentials }) {
+function Header({ loggedIn, setLoggedIn, setLoginCredentials, setUserPlaylists }) {
   const navigate = useNavigate();
   const logout = () => {
     facade.logout();
     setLoggedIn(false);
     setLoginCredentials({ username: '', password: '' });
+    setUserPlaylists([]);
     navigate('/');
   };
 
