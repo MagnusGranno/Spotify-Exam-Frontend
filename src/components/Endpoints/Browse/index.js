@@ -1,57 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 // Url
-import { fetchCategories, fetchByCategory } from '../../../settings';
+import {
+  fetchCategories,
+  fetchByCategory
+} from "../../../settings";
 
 // Styles
-import { MyBody, DropdownMenu } from './Browse.styles';
+import { MyBody, DropdownMenu } from "./Browse.styles";
 // Components
-import Dropdown from './Dropdown';
-import PlaylistGrid from './PlaylistGrid';
-import PlaylistModal from '../../PlaylistModal';
+import Dropdown from "./Dropdown";
+import PlaylistGrid from "./PlaylistGrid";
+import PlaylistModal from "../../PlaylistModal";
+import { wait } from "@testing-library/react";
 
-function Browse({loginCredentials}) {
-  const [genre, setGenre] = useState('');
-  const [genreList, setGenreList] = useState([]);
+function Browse({
+  loginCredentials,
+  genre,
+  setGenre,
+  genreList,
+  setGenreList,
+  userPlaylists,
+  setUserPlaylists
+}) {
   const [showModal, setShowModal] = useState(false);
 
   const [playlist, setPlaylist] = useState({
-    selectedPlaylist: '',
+    selectedPlaylist: "",
     listOfPlaylistFromAPI: [],
   });
-  const [playlistList, setPlayListList] = useState([]);
+  const [playlistList, setPlaylistList] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState([]);
 
   useEffect(() => {
-    if (sessionStorage.getItem('genre')) {
-      setGenre(sessionStorage.getItem('genre'));
-      axios(`${fetchByCategory}${sessionStorage.getItem('genre')}`, {
-        method: 'GET',
-      }).then((playlistResponse) => {
-        setPlayListList(playlistResponse.data);
-      });
-    }
-  }, [genre]);
-
-  useEffect(() => {
-    axios(fetchCategories, {
-      method: 'GET',
-    }).then((genreResponse) => {
-      setGenreList(genreResponse.data);
-    });
-    if (!sessionStorage.getItem('genre')) {
-      axios(`${fetchByCategory}toplists`, {
-        method: 'GET',
-      }).then((playlistResponse) => {
-        setPlayListList(playlistResponse.data);
+    if (genreList.length === 0) {
+      axios(fetchCategories, {
+        method: "GET",
+      }).then((genreResponse) => {
+        setGenreList(genreResponse.data);
       });
     }
   }, []);
 
+  useEffect(() => {
+    if (!genre) {
+      axios(`${fetchByCategory}toplists`, {
+        method: "GET",
+      }).then((playlistResponse) => {
+        setPlaylistList(playlistResponse.data);
+      });
+    } else {
+      axios(`${fetchByCategory}${genre}`, {
+        method: "GET",
+      }).then((playlistResponse) => {
+        setPlaylistList(playlistResponse.data);
+      });
+    }
+  }, [genre]);
+
   const genreChanged = (val) => {
     setGenre(val);
-    sessionStorage.setItem('genre', val);
   };
+  
+  if(userPlaylists.length === 0){
+    return (
+      null
+    )
+  }
 
   return (
     <MyBody>
@@ -64,10 +79,13 @@ function Browse({loginCredentials}) {
         />
       </DropdownMenu>
       <PlaylistGrid
-        options={playlistList}
+        playlistList={playlistList}
         showModal={showModal}
         setShowModal={setShowModal}
         loginCredentials={loginCredentials}
+        userPlaylists={userPlaylists}
+        setUserPlaylists={setUserPlaylists}
+        
       />
     </MyBody>
   );

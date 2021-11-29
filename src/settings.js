@@ -16,5 +16,11 @@ export const signup =
 export const login = 
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login'
 
-export const follow = 
+export const followUrl = 
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/follow';
+
+export const unFollowUrl = 
+  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/unfollow';
+  
+export const userPlaylistsDB = 
+  `http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/myplaylists/`;

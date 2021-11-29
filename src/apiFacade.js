@@ -55,6 +55,7 @@ function apiFacade() {
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('roles');
+    sessionStorage.removeItem('genre');
   };
 
   const makeOptions = (method, addToken, body) => {

@@ -12,6 +12,7 @@ export const Container = styled.div`
 `;
 
 export const GridContainer = styled.div`
+  z-index: 10;
   display: grid;
   text-align: center;
   justify-content: space-evenly;
@@ -70,7 +71,7 @@ export const Btn = styled.div`
 `;
 
 export const LeftButton = styled.button`
-  background-color: hsl(var(--primary-color));
+  background-color: hsl(var(${props => props.bgColor}));
   color: white;
   padding: 1rem;
   font-size: var(--fs-400);
@@ -82,7 +83,7 @@ export const LeftButton = styled.button`
   border-radius: 0 0 0 12px;
 
   :hover {
-    background-color: hsl(var(--secondary-color), 0.8);
+    background-color: hsl(var(${props => props.hoverColor}), 0.8);
   }
 `;
 

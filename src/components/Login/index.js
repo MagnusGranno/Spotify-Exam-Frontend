@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 // Facade
 import { facade } from '../../apiFacade';
@@ -13,6 +14,9 @@ import {
   StyledError,
 } from './Login.styles';
 
+// Urls
+import { userPlaylistsDB } from '../../settings';
+
 // Router
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +25,7 @@ const initialState = {
   password: '',
 };
 
-const Login = ({ setLoggedIn, loginCredentials, setLoginCredentials }) => {
+const Login = ({ setLoggedIn, loginCredentials, setLoginCredentials, setUserPlaylists }) => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -46,8 +50,15 @@ const Login = ({ setLoggedIn, loginCredentials, setLoginCredentials }) => {
 
   const login = async (user, pass) => {
     await facade.login(user, pass).then((res) => {
+      
       setLoggedIn(facade.loggedIn());
       if (facade.loggedIn()) {
+        axios(`${userPlaylistsDB}${sessionStorage.getItem("username")}`, {
+          method: "GET",
+        }).then((response) => {
+          setUserPlaylists(response.data);
+          // console.log(response);
+        });
         navigate('/');
       } else {
         setError('Invalid username or password');

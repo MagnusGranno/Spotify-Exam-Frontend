@@ -11,30 +11,49 @@ import { Link, useRouteMatch, Switch, Route } from "react-router-dom";
 
 import PlaylistModal from "../../PlaylistModal";
 import axios from "axios";
-import { follow } from "../../../settings";
-import e from "cors";
+import { followUrl, unFollowUrl, userPlaylistsDB } from "../../../settings";
 
-
-const PlaylistGrid = ({ options, showModal, setShowModal, loginCredentials }) => {
+const PlaylistGrid = ({
+  playlistList,
+  showModal,
+  setShowModal,
+  loginCredentials,
+  userPlaylists,
+  setUserPlaylists
+}) => {
   const [playlistId, setPlaylistId] = useState("");
   const [playlistName, setPlaylistName] = useState("");
+
+  // function follow(e) {
+  //   updateUserPlaylist(followUrl, e.target.id);
+  // }
   
-  function Follow(e) {
-    console.log(e);
-    axios(follow,{
-      method: 'POST',
-      data:{
-        username: loginCredentials.username,
-        spotifyId: e.target.id
-      }
-    });
-  }
+  // const unFollow = (e) => {
+  //   updateUserPlaylist(unFollowUrl, e.target.id)
+  // }
+  
+  // const updateUserPlaylist = (url,id) => {
+  //   // axios(url, {
+  //   //   method: "POST",
+  //   //   data: {
+  //   //     username: sessionStorage.getItem("username"),
+  //   //     spotifyId: id,
+  //   //   },
+  //   // });
+    
+  //   // axios(`${userPlaylistsDB}${sessionStorage.getItem("username")}`, {
+  //   //   method: "GET",
+  //   // }).then((response) => {
+  //   //   setUserPlaylists(response.data);
+  //   // });
+    
+  // }
 
   const onPictureClick = (id, name) => {
     setPlaylistId(id);
     setShowModal(!showModal);
     setPlaylistName(name);
-    console.log(options);
+    console.log(playlistList);
   };
 
   return (
@@ -48,19 +67,24 @@ const PlaylistGrid = ({ options, showModal, setShowModal, loginCredentials }) =>
         />
       )}
       <GridContainer>
-        {options.map((item, idx) => (
-          <Grid key={idx + 1} value={item.id}>
+        {playlistList.map((item, i) => (
+          <Grid key={i} value={item.id}>
             <GridImg
               src={item.imageUrl}
               alt="thumb"
               onClick={() => onPictureClick(item.id, item.name)}
             />
             <Btn>
-              <LeftButton id={item.id} onClick={Follow}>Follow</LeftButton>
-
-              <RightButton href={`https://open.spotify.com/playlist/${item.id}`}
-                  target="_blank">
-                  Play
+              {/* {userPlaylists.find(id => id.id === item.id) ? (
+                <LeftButton id={item.id} onClick={unFollow} bgColor="--secondary-color" hoverColor="--secondary-color">Unfollow</LeftButton>
+              ):(
+                <LeftButton id={item.id} onClick={follow} bgColor="--primary-color" hoverColor="--secondary-color">Follow</LeftButton>
+              )}  */}
+              <RightButton
+                href={`https://open.spotify.com/playlist/${item.id}`}
+                target="_blank"
+              >
+                Play
               </RightButton>
             </Btn>
           </Grid>
