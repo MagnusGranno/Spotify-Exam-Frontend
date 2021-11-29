@@ -10,7 +10,7 @@ import Dropdown from './Dropdown';
 import PlaylistGrid from './PlaylistGrid';
 import PlaylistModal from '../../PlaylistModal';
 
-function Browse() {
+function Browse({loginCredentials}) {
   const [genre, setGenre] = useState('');
   const [genreList, setGenreList] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -67,6 +67,7 @@ function Browse() {
         options={playlistList}
         showModal={showModal}
         setShowModal={setShowModal}
+        loginCredentials={loginCredentials}
       />
     </MyBody>
   );

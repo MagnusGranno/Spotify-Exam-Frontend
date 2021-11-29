@@ -10,17 +10,25 @@ import {
 import { Link, useRouteMatch, Switch, Route } from "react-router-dom";
 
 import PlaylistModal from "../../PlaylistModal";
-function Follow() {
-  console.log("do follow");
-}
+import axios from "axios";
+import { follow } from "../../../settings";
+import e from "cors";
 
-function Like() {
-  console.log("do Like");
-}
 
-const PlaylistGrid = ({ options, showModal, setShowModal }) => {
+const PlaylistGrid = ({ options, showModal, setShowModal, loginCredentials }) => {
   const [playlistId, setPlaylistId] = useState("");
   const [playlistName, setPlaylistName] = useState("");
+  
+  function Follow(e) {
+    console.log(e);
+    axios(follow,{
+      method: 'POST',
+      data:{
+        username: loginCredentials.username,
+        spotifyId: e.target.id
+      }
+    });
+  }
 
   const onPictureClick = (id, name) => {
     setPlaylistId(id);
@@ -48,7 +56,7 @@ const PlaylistGrid = ({ options, showModal, setShowModal }) => {
               onClick={() => onPictureClick(item.id, item.name)}
             />
             <Btn>
-              <LeftButton>Follow</LeftButton>
+              <LeftButton id={item.id} onClick={Follow}>Follow</LeftButton>
 
               <RightButton href={`https://open.spotify.com/playlist/${item.id}`}
                   target="_blank">

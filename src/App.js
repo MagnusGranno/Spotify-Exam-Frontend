@@ -51,7 +51,7 @@ function App() {
             />
           }
         />
-        <Route path="/browse" element={<Browse title={'Browse'} />} />
+        <Route path="/browse" element={<Browse title={'Browse'} loginCredentials={loginCredentials} />} />
         <Route
           path="/myPlaylists"
           element={<MyPlaylists title={'MyPlaylists'} />}
