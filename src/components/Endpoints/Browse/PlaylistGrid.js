@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Btn,
@@ -19,35 +19,31 @@ const PlaylistGrid = ({
   setShowModal,
   loginCredentials,
   userPlaylists,
-  setUserPlaylists
+  setUserPlaylists,
 }) => {
   const [playlistId, setPlaylistId] = useState("");
   const [playlistName, setPlaylistName] = useState("");
 
-  // function follow(e) {
-  //   updateUserPlaylist(followUrl, e.target.id);
-  // }
-  
-  // const unFollow = (e) => {
-  //   updateUserPlaylist(unFollowUrl, e.target.id)
-  // }
-  
-  // const updateUserPlaylist = (url,id) => {
-  //   // axios(url, {
-  //   //   method: "POST",
-  //   //   data: {
-  //   //     username: sessionStorage.getItem("username"),
-  //   //     spotifyId: id,
-  //   //   },
-  //   // });
-    
-  //   // axios(`${userPlaylistsDB}${sessionStorage.getItem("username")}`, {
-  //   //   method: "GET",
-  //   // }).then((response) => {
-  //   //   setUserPlaylists(response.data);
-  //   // });
-    
-  // }
+  function follow(e) {
+    updateUserPlaylist(followUrl, e.target.id);
+    setUserPlaylists([...userPlaylists,{id: e.target.id}]);
+  }
+
+  const unFollow = (e) => {
+    updateUserPlaylist(unFollowUrl, e.target.id);
+    const arr = userPlaylists.filter(x => x.id !== e.target.id);
+    setUserPlaylists(arr);
+  };
+
+  const updateUserPlaylist = (url, id) => {
+    axios(url, {
+      method: "POST",
+      data: {
+        username: sessionStorage.getItem("username"),
+        spotifyId: id,
+      },
+    });
+  };
 
   const onPictureClick = (id, name) => {
     setPlaylistId(id);
@@ -75,11 +71,25 @@ const PlaylistGrid = ({
               onClick={() => onPictureClick(item.id, item.name)}
             />
             <Btn>
-              {/* {userPlaylists.find(id => id.id === item.id) ? (
-                <LeftButton id={item.id} onClick={unFollow} bgColor="--secondary-color" hoverColor="--secondary-color">Unfollow</LeftButton>
-              ):(
-                <LeftButton id={item.id} onClick={follow} bgColor="--primary-color" hoverColor="--secondary-color">Follow</LeftButton>
-              )}  */}
+              {userPlaylists.find((id) => id.id === item.id) ? (
+                <LeftButton
+                  id={item.id}
+                  onClick={unFollow}
+                  bgColor="--secondary-color"
+                  hoverColor="--secondary-color"
+                >
+                  Unfollow
+                </LeftButton>
+              ) : (
+                <LeftButton
+                  id={item.id}
+                  onClick={follow}
+                  bgColor="--primary-color"
+                  hoverColor="--secondary-color"
+                >
+                  Follow
+                </LeftButton>
+              )}
               <RightButton
                 href={`https://open.spotify.com/playlist/${item.id}`}
                 target="_blank"

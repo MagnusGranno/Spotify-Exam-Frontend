@@ -12,7 +12,6 @@ import { MyBody, DropdownMenu } from "./Browse.styles";
 import Dropdown from "./Dropdown";
 import PlaylistGrid from "./PlaylistGrid";
 import PlaylistModal from "../../PlaylistModal";
-import { wait } from "@testing-library/react";
 
 function Browse({
   loginCredentials,
@@ -62,12 +61,6 @@ function Browse({
     setGenre(val);
   };
   
-  if(userPlaylists.length === 0){
-    return (
-      null
-    )
-  }
-
   return (
     <MyBody>
       <DropdownMenu>
