@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   position: fixed;
   z-index: 1;
+
+  @media (max-width: 720px) {
+    min-height: 100px;
+  }
 `;
 
 export const Content = styled.div`
@@ -21,6 +25,9 @@ export const Content = styled.div`
     font-size: var(--fs-500);
   }
 
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
   @media (min-width: 860px) {
     h1 {
       font-size: var(--fs-600);
@@ -45,6 +52,10 @@ export const Menu = styled.div`
   gap: 1rem;
   align-items: center;
   font-size: var(--fs-300);
+
+  @media (max-width: 720px) {
+    margin-bottom: 1rem;
+  }
   @media (min-width: 860px) {
     font-size: var(--fs-500);
     font-weight: 800;

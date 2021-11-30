@@ -9,6 +9,5 @@ export const Wrapper = styled.div`
 
   h1 {
     font-weight: bold;
-    text-shadow: 2px 2px 2px #595959;
   }
 `;

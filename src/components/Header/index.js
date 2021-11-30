@@ -39,9 +39,11 @@ function Header({
           </NavLink>
         </h1>
         <Menu>
-          <NavLink className="header_nav" to="/myPlaylists">
-            My Playlists
-          </NavLink>
+          {loggedIn && (
+            <NavLink className="header_nav" to="/myPlaylists">
+              My Playlists
+            </NavLink>
+          )}
           <NavLink className="header_nav" to="/browse">
             Browse
           </NavLink>

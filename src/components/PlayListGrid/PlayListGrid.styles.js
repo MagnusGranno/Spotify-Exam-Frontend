@@ -5,7 +5,7 @@ export const GridContainer = styled.div`
   display: grid;
   text-align: center;
   justify-content: space-evenly;
-  grid-template-columns: repeat(2, minmax(200px, 225px));
+  grid-template-columns: repeat(2, minmax(100px, 225px));
   gap: 2rem;
   @media (min-width: 820px) {
     grid-template-columns: repeat(3, minmax(150px, 255px));
@@ -31,7 +31,7 @@ export const Grid = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 12px;
   color: hsl(var(--primary-color));
-
+  margin: 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,6 +61,9 @@ export const Button = styled.a`
   justify-content: center;
   align-items: center;
   width: 100%;
+  @media (max-width: 720px) {
+    font-size: var(--fs-200);
+  }
 
   :hover {
     background-color: hsl(var(${(props) => props.hoverColor}), 0.8);

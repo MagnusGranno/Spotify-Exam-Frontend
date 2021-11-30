@@ -21,6 +21,13 @@ const PlaylistModal = ({
 }) => {
   const [tracks, setTracks] = useState([]);
 
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const resize = () => {
+    setWidth(window.innerWidth);
+  };
+  window.addEventListener('resize', resize);
+
   let count = 1;
 
   const miliToMin = (millis) => {
@@ -51,21 +58,21 @@ const PlaylistModal = ({
           <thead>
             <tr>
               <th colSpan="4" className="PlayTitle">
-                {playlistName}
+                <h2>{playlistName}</h2>
               </th>
             </tr>
             <tr>
-              <th>#</th>
+              {width > 720 && <th>#</th>}
               <th>Name</th>
               <th>Artists</th>
               <th>Duration</th>
-              <th>Preview</th>
+              {width > 720 && <th>Preview</th>}
             </tr>
           </thead>
           <tbody>
             {tracks.map((track) => (
               <tr key={track.id}>
-                <td>{count++}</td>
+                {width > 720 && <td>{count++}</td>}
                 <td>{track.name}</td>
                 <td>
                   {track.artists.map((item, i) => (
@@ -77,16 +84,18 @@ const PlaylistModal = ({
                   ))}
                 </td>
                 <td>{miliToMin(track.duration_ms)}</td>
-                <td>
-                  {track.preview_url && (
-                    <video controls>
-                      <source
-                        src={track.preview_url}
-                        type="audio/mpeg"
-                      ></source>
-                    </video>
-                  )}
-                </td>
+                {width > 720 && (
+                  <td>
+                    {track.preview_url && (
+                      <video controls>
+                        <source
+                          src={track.preview_url}
+                          type="audio/mpeg"
+                        ></source>
+                      </video>
+                    )}
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
