@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MyBody = styled.div`
   height: 100%;
@@ -65,14 +65,14 @@ export const DropdownMenu = styled.div`
 export const Btn = styled.div`
   color: #fff;
   display: flex;
-  border-radius:0 0 12px 12px;
+  border-radius: 0 0 12px 12px;
   overflow: hidden;
   width: 100%;
   max-width: 300px;
 `;
 
 export const Button = styled.a`
-  background-color: hsl(var(${props => props.bgColor}));
+  background-color: hsl(var(${(props) => props.bgColor}));
   color: white;
   padding: 1rem;
   font-size: var(--fs-400);
@@ -84,6 +84,6 @@ export const Button = styled.a`
   width: 100%;
 
   :hover {
-    background-color: hsl(var(${props => props.hoverColor}), 0.8);
+    background-color: hsl(var(${(props) => props.hoverColor}), 0.8);
   }
 `;

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
-import { fetchPlayList } from "../../settings";
+import React, { useState, useEffect, Fragment } from 'react';
+import axios from 'axios';
+import { fetchPlayList } from '../../settings';
 
 // Images
-import arrow from "../../images/arrow.png";
-import cross from "../../images/cross.png";
+import arrow from '../../images/arrow.png';
+import cross from '../../images/cross.png';
 // Styles
 import {
   ModalBackdrop,
@@ -13,7 +13,7 @@ import {
   LinkButton,
   ModalCross,
   ModalArrow,
-} from "./PlaylistModal.styles";
+} from './PlaylistModal.styles';
 
 const PlaylistModal = ({
   showModal,
@@ -23,18 +23,17 @@ const PlaylistModal = ({
 }) => {
   const [tracks, setTracks] = useState([]);
   let volume = 0.5;
-  
 
   let count = 1;
 
   const miliToMin = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
 
   const clickMe = () => {
-    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: "GET" }).then(
+    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
       (tracksResponse) => {
         setTracks(tracksResponse.data);
         // console.log(tracksResponse.data);
@@ -42,7 +41,7 @@ const PlaylistModal = ({
     );
   };
   useEffect(() => {
-    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: "GET" }).then(
+    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
       (tracksResponse) => {
         setTracks(tracksResponse.data);
         console.log(tracksResponse.data);
@@ -52,7 +51,6 @@ const PlaylistModal = ({
 
   const outSideClick = () => {
     setShowModal(!showModal);
-    
   };
   return (
     <ModalBackdrop>
@@ -85,7 +83,7 @@ const PlaylistModal = ({
                     <>
                       {track.artists.length - 1 === i
                         ? item.name
-                        : item.name + " & "}{" "}
+                        : item.name + ' & '}{' '}
                     </>
                   ))}
                 </td>

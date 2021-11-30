@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // Url
-import {
-  fetchCategories,
-  fetchByCategory
-} from "../../../settings";
+import { fetchCategories, fetchByCategory } from '../../../settings';
 
 // Styles
-import { MyBody, DropdownMenu } from "./Browse.styles";
+import { MyBody, DropdownMenu } from './Browse.styles';
 // Components
-import Dropdown from "./Dropdown";
-import PlaylistGrid from "./PlaylistGrid";
-import PlaylistModal from "../../PlaylistModal";
+import Dropdown from './Dropdown';
+import PlaylistGrid from './PlaylistGrid';
+import PlaylistModal from '../../PlaylistModal';
 
 function Browse({
   loginCredentials,
@@ -21,12 +18,12 @@ function Browse({
   setGenreList,
   userPlaylists,
   setUserPlaylists,
-  loggedIn
+  loggedIn,
 }) {
   const [showModal, setShowModal] = useState(false);
 
   const [playlist, setPlaylist] = useState({
-    selectedPlaylist: "",
+    selectedPlaylist: '',
     listOfPlaylistFromAPI: [],
   });
   const [playlistList, setPlaylistList] = useState([]);
@@ -35,7 +32,7 @@ function Browse({
   useEffect(() => {
     if (genreList.length === 0) {
       axios(fetchCategories, {
-        method: "GET",
+        method: 'GET',
       }).then((genreResponse) => {
         setGenreList(genreResponse.data);
       });
@@ -45,13 +42,13 @@ function Browse({
   useEffect(() => {
     if (!genre) {
       axios(`${fetchByCategory}toplists`, {
-        method: "GET",
+        method: 'GET',
       }).then((playlistResponse) => {
         setPlaylistList(playlistResponse.data);
       });
     } else {
       axios(`${fetchByCategory}${genre}`, {
-        method: "GET",
+        method: 'GET',
       }).then((playlistResponse) => {
         setPlaylistList(playlistResponse.data);
       });
@@ -61,7 +58,7 @@ function Browse({
   const genreChanged = (val) => {
     setGenre(val);
   };
-  
+
   return (
     <MyBody>
       <DropdownMenu>
@@ -80,7 +77,6 @@ function Browse({
         userPlaylists={userPlaylists}
         setUserPlaylists={setUserPlaylists}
         loggedIn={loggedIn}
-        
       />
     </MyBody>
   );

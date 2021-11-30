@@ -44,7 +44,6 @@ const DivStyler = styled.div`
 `;
 
 const Dropdown = (props) => {
-  
   const dropdownChanged = (e) => {
     props.changed(e.target.value);
   };

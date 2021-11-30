@@ -9,18 +9,17 @@ export const fetchByCategory =
 
 export const fetchPlayList =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify';
-  
-export const signup = 
+
+export const signup =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login/create';
 
-export const login = 
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login'
+export const login =
+  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login';
 
-export const followUrl = 
+export const followUrl =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/follow';
 
-export const unFollowUrl = 
+export const unFollowUrl =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/unfollow';
-  
-export const userPlaylistsDB = 
-  `http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/myplaylists/`;
+
+export const userPlaylistsDB = `http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/myplaylists/`;

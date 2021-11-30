@@ -15,7 +15,12 @@ import {
   ProfileLink,
 } from './Header.styles';
 
-function Header({ loggedIn, setLoggedIn, setLoginCredentials, setUserPlaylists }) {
+function Header({
+  loggedIn,
+  setLoggedIn,
+  setLoginCredentials,
+  setUserPlaylists,
+}) {
   const navigate = useNavigate();
   const logout = () => {
     facade.logout();
@@ -42,21 +47,21 @@ function Header({ loggedIn, setLoggedIn, setLoginCredentials, setUserPlaylists }
           </NavLink>
           {!loggedIn ? (
             <>
-            <NavLink className="header_nav" to="/login">
-              Login
-            </NavLink>
-            <div className="line"></div>
-            <NavLink className="header_nav" to="/signup">
-              Sign up
+              <NavLink className="header_nav" to="/login">
+                Login
               </NavLink>
-              </>
+              <div className="line"></div>
+              <NavLink className="header_nav" to="/signup">
+                Sign up
+              </NavLink>
+            </>
           ) : (
             <StyledLogout onClick={logout}>Logout</StyledLogout>
           )}
           {loggedIn && <div className="line"></div>}
           {loggedIn && (
             <ProfileLink>{sessionStorage.getItem('username')}</ProfileLink>
-           )}
+          )}
         </Menu>
       </Content>
     </Wrapper>

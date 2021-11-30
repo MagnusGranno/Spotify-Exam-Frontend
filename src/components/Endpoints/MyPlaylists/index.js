@@ -8,12 +8,8 @@ import { facade } from '../../../apiFacade';
 import { MyBody, Container, Grid, GridContainer } from './MyPlaylists.styles';
 
 function MyPlaylists() {
-  
   const myPlaylistIDS = [12312312, 103012312, 102310231, 12301023, 1230012];
-  const myPlaylists = [{}]
-
-
-  
+  const myPlaylists = [{}];
 
   return (
     <MyBody>

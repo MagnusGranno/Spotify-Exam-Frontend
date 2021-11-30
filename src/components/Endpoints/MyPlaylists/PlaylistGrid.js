@@ -10,6 +10,7 @@ import {
 import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 
 import PlaylistModal from '../../PlaylistModal';
+
 function Follow() {
   console.log('do follow');
 }
