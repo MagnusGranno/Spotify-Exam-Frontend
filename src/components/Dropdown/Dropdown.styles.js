@@ -1,9 +1,6 @@
-import React from 'react';
-//import "bootstrap/dist/css/bootstrap.min.css";
-//import "bootstrap/dist/js/bootstrap.bundle.min";
 import styled from 'styled-components';
 
-const DivStyler = styled.div`
+export const DivStyler = styled.div`
   font-size: var(--fs-400);
 
   display: inline-block;
@@ -42,26 +39,3 @@ const DivStyler = styled.div`
     pointer-events: none;
   }
 `;
-
-const Dropdown = (props) => {
-  
-  const dropdownChanged = (e) => {
-    props.changed(e.target.value);
-  };
-
-  return (
-    <DivStyler>
-      <label>{props.label}</label>
-      <select value={props.selectedValue} onChange={dropdownChanged}>
-        <option hidden>Select Genre</option>
-        {props.options.map((item, i) => (
-          <option key={i} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </select>
-    </DivStyler>
-  );
-};
-
-export default Dropdown;

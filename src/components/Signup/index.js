@@ -1,9 +1,9 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import React, { useState } from 'react';
 
 // Facade
 import { facade } from '../../apiFacade';
-import { login, signup } from "../../settings";
+import { signup } from '../../settings';
 
 // Styles
 import {
@@ -18,34 +18,40 @@ import {
 //Router
 import { useNavigate } from 'react-router-dom';
 
-function Signup({setLoginCredentials, setLoggedIn}) {
+function Signup({ setLoginCredentials, setLoggedIn }) {
   const [response, setResponse] = useState('');
   const [signupCredentials, setSignupCredentials] = useState({});
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
-    setSignupCredentials({...signupCredentials,[e.target.id]: e.target.value});
-  }
-  
+    setSignupCredentials({
+      ...signupCredentials,
+      [e.target.id]: e.target.value,
+    });
+    console.log(signupCredentials);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios(`${signup}`,{
+    axios(`${signup}`, {
       method: 'POST',
-      data:signupCredentials
-    }).then(response => {
+      data: signupCredentials,
+    }).then((response) => {
       setResponse(response.data);
-      if(response.data.status === 'success'){
-        facade.login(signupCredentials.username,signupCredentials.password).then(() => {
-          if (sessionStorage.getItem('username') && facade.loggedIn) {
-            setLoginCredentials(signupCredentials);
-            setLoggedIn(true);
-            navigate('/');
-          }
-        });
+      if (response.data.status === 'success') {
+        facade
+          .login(signupCredentials.username, signupCredentials.password)
+          .then(() => {
+            if (sessionStorage.getItem('username') && facade.loggedIn) {
+              setLoginCredentials(signupCredentials);
+              setLoggedIn(true);
+              navigate('/');
+            }
+          });
       }
     });
-  }
-  
+  };
+
   return (
     <Wrapper>
       <StyledFormWrapper>

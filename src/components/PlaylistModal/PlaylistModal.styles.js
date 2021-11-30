@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -15,10 +15,12 @@ export const ModalBackdrop = styled.div`
 
 export const Rapper = styled.div`
   margin-top: 5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
+
   background: hsl(var(--primary-color));
   color: hsl(var(--secondary-color));
-  width: 50%;
+  min-width: 50%;
+  max-width: 99%;
   max-height: 70%;
   border-radius: 12px;
   display: flex;
@@ -38,6 +40,14 @@ export const Rapper = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+
+  @media (max-width: 720px) {
+    width: 99%;
+    max-height: 80%;
+    margin-top: 0rem;
+    margin-bottom: 5rem;
+    overflow-y: scroll;
+  }
 `;
 
 export const ModalTable = styled.table`
@@ -46,10 +56,10 @@ export const ModalTable = styled.table`
   margin-left: 1rem;
   margin-right: 1rem;
   overflow: hidden;
-  
-  video{
+
+  video {
     /* margin: 0; */
-    height:40px;
+    height: 40px;
     width: 200px;
   }
   video::-webkit-media-controls-current-time-display,
@@ -65,6 +75,9 @@ export const ModalTable = styled.table`
     border-bottom: 1px solid #dddddd;
   }
 
+  tbody tr:last-child {
+    border-bottom: none;
+  }
   th,
   td {
     padding: 1.25rem 1.5rem;
@@ -79,6 +92,20 @@ export const ModalTable = styled.table`
   a {
     color: hsl(var(--secondary-color));
     margin: 5px;
+  }
+
+  @media (max-width: 720px) {
+    font-size: var(--fs-300);
+    thead tr th h2 {
+      font-size: var(--fs-400);
+    }
+    th,
+    td {
+      padding: 0.5rem 0.5rem;
+    }
+    tbody tr td {
+      font-size: var(--fs-200);
+    }
   }
 `;
 

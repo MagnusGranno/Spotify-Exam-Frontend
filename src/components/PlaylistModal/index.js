@@ -1,19 +1,17 @@
-import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
-import { fetchPlayList } from "../../settings";
+import React, { useState, useEffect, Fragment } from 'react';
+import axios from 'axios';
+import { fetchPlayList } from '../../settings';
 
 // Images
-import arrow from "../../images/arrow.png";
-import cross from "../../images/cross.png";
+import cross from '../../images/cross.png';
+
 // Styles
 import {
   ModalBackdrop,
   Rapper,
   ModalTable,
-  LinkButton,
   ModalCross,
-  ModalArrow,
-} from "./PlaylistModal.styles";
+} from './PlaylistModal.styles';
 
 const PlaylistModal = ({
   showModal,
@@ -22,27 +20,24 @@ const PlaylistModal = ({
   playlistName,
 }) => {
   const [tracks, setTracks] = useState([]);
-  let volume = 0.5;
-  
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const resize = () => {
+    setWidth(window.innerWidth);
+  };
+  window.addEventListener('resize', resize);
 
   let count = 1;
 
   const miliToMin = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
 
-  const clickMe = () => {
-    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: "GET" }).then(
-      (tracksResponse) => {
-        setTracks(tracksResponse.data);
-        // console.log(tracksResponse.data);
-      }
-    );
-  };
   useEffect(() => {
-    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: "GET" }).then(
+    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
       (tracksResponse) => {
         setTracks(tracksResponse.data);
         console.log(tracksResponse.data);
@@ -52,7 +47,6 @@ const PlaylistModal = ({
 
   const outSideClick = () => {
     setShowModal(!showModal);
-    
   };
   return (
     <ModalBackdrop>
@@ -64,46 +58,44 @@ const PlaylistModal = ({
           <thead>
             <tr>
               <th colSpan="4" className="PlayTitle">
-                {playlistName}
+                <h2>{playlistName}</h2>
               </th>
             </tr>
             <tr>
-              <th>#</th>
+              {width > 720 && <th>#</th>}
               <th>Name</th>
               <th>Artists</th>
               <th>Duration</th>
-              <th>Preview</th>
+              {width > 720 && <th>Preview</th>}
             </tr>
           </thead>
           <tbody>
             {tracks.map((track) => (
               <tr key={track.id}>
-                <td>{count++}</td>
+                {width > 720 && <td>{count++}</td>}
                 <td>{track.name}</td>
                 <td>
                   {track.artists.map((item, i) => (
                     <>
                       {track.artists.length - 1 === i
                         ? item.name
-                        : item.name + " & "}{" "}
+                        : item.name + ' & '}{' '}
                     </>
                   ))}
                 </td>
                 <td>{miliToMin(track.duration_ms)}</td>
-                <td>
-                  {track.preview_url && (
-                    <video
-                      controls
-                      controlslist="nodownload noplaybackrate"
-                      volume={0.001}
-                    >
-                      <source
-                        src={track.preview_url}
-                        type="audio/mpeg"
-                      ></source>
-                    </video>
-                  )}
-                </td>
+                {width > 720 && (
+                  <td>
+                    {track.preview_url && (
+                      <video controls>
+                        <source
+                          src={track.preview_url}
+                          type="audio/mpeg"
+                        ></source>
+                      </video>
+                    )}
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
