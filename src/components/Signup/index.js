@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // Facade
 import { facade } from '../../apiFacade';
-import { login, signup } from '../../settings';
+import { signup } from '../../settings';
 
 // Styles
 import {

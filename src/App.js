@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Components
 import Header from './components/Header';
-import Browse from './components/Endpoints/Browse';
+import Browse from './components/Browse';
 import Home from './components/Home';
 import Login from './components/Login';
-import MyPlaylists from './components/Endpoints/MyPlaylists';
+import MyPlaylists from './components/MyPlaylists';
 import Signup from './components/Signup';
 
 // Urls
@@ -54,7 +54,17 @@ function App() {
         setUserPlaylists={setUserPlaylists}
       />
       <Routes>
-        <Route exact path="/" element={<Home loggedIn={loggedIn} />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <Home
+              loggedIn={loggedIn}
+              userPlaylists={userPlaylists}
+              setUserPlaylists={setUserPlaylists}
+            />
+          }
+        />
         <Route
           path="/login"
           element={
@@ -70,8 +80,6 @@ function App() {
           path="/browse"
           element={
             <Browse
-              title={'Browse'}
-              loginCredentials={loginCredentials}
               genre={genre}
               setGenre={setGenre}
               genreList={genreList}
@@ -84,13 +92,19 @@ function App() {
         />
         <Route
           path="/myPlaylists"
-          element={<MyPlaylists title={'MyPlaylists'} />}
+          element={
+            <MyPlaylists
+              loggedIn={loggedIn}
+              loginCredentials={loginCredentials}
+              userPlaylists={userPlaylists}
+              setUserPlaylists={setUserPlaylists}
+            />
+          }
         />
         <Route
           path="/signup"
           element={
             <Signup
-              title={'signup'}
               setLoginCredentials={setLoginCredentials}
               setLoggedIn={setLoggedIn}
             />

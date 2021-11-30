@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const MyBody = styled.div`
-  height: 100%;
-  padding-bottom: 2rem;
-  padding: 10rem 1rem;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 export const GridContainer = styled.div`
   z-index: 10;
   display: grid;
@@ -50,16 +39,6 @@ export const Grid = styled.div`
     transform: scale(1.1);
   }
   transition-duration: 0.2s;
-`;
-
-export const DropdownMenu = styled.div`
-  margin: 0 auto;
-  margin-bottom: 2rem;
-  width: max(20vw, 400px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Btn = styled.div`

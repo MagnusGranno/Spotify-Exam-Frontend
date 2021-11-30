@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   Btn,
   GridContainer,
-  LeftButton,
-  RightButton,
   GridImg,
   Button,
-} from './Browse.styles';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
+} from './PlayListGrid.styles';
 
-import PlaylistModal from '../../PlaylistModal';
+import PlaylistModal from '../PlaylistModal';
 import axios from 'axios';
-import { followUrl, unFollowUrl, userPlaylistsDB } from '../../../settings';
+import { followUrl, unFollowUrl } from '../../settings';
 
 const PlaylistGrid = ({
   playlistList,
   showModal,
   setShowModal,
-  loginCredentials,
   userPlaylists,
   setUserPlaylists,
   loggedIn,

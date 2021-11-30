@@ -3,16 +3,14 @@ import axios from 'axios';
 import { fetchPlayList } from '../../settings';
 
 // Images
-import arrow from '../../images/arrow.png';
 import cross from '../../images/cross.png';
+
 // Styles
 import {
   ModalBackdrop,
   Rapper,
   ModalTable,
-  LinkButton,
   ModalCross,
-  ModalArrow,
 } from './PlaylistModal.styles';
 
 const PlaylistModal = ({
@@ -22,7 +20,6 @@ const PlaylistModal = ({
   playlistName,
 }) => {
   const [tracks, setTracks] = useState([]);
-  let volume = 0.5;
 
   let count = 1;
 
@@ -32,14 +29,6 @@ const PlaylistModal = ({
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
 
-  const clickMe = () => {
-    axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
-      (tracksResponse) => {
-        setTracks(tracksResponse.data);
-        // console.log(tracksResponse.data);
-      }
-    );
-  };
   useEffect(() => {
     axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
       (tracksResponse) => {
@@ -90,11 +79,7 @@ const PlaylistModal = ({
                 <td>{miliToMin(track.duration_ms)}</td>
                 <td>
                   {track.preview_url && (
-                    <video
-                      controls
-                      controlslist="nodownload noplaybackrate"
-                      volume={0.001}
-                    >
+                    <video controls>
                       <source
                         src={track.preview_url}
                         type="audio/mpeg"

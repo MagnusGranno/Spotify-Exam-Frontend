@@ -23,3 +23,6 @@ export const unFollowUrl =
   'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/unfollow';
 
 export const userPlaylistsDB = `http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/myplaylists/`;
+
+export const popularPlaylists =
+  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/popular';

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 // Url
-import { fetchCategories, fetchByCategory } from '../../../settings';
+import { fetchCategories, fetchByCategory } from '../../settings';
 
 // Styles
 import { MyBody, DropdownMenu } from './Browse.styles';
+
 // Components
-import Dropdown from './Dropdown';
-import PlaylistGrid from './PlaylistGrid';
-import PlaylistModal from '../../PlaylistModal';
+import Dropdown from '../Dropdown';
+import PlaylistGrid from '../PlayListGrid';
 
 function Browse({
-  loginCredentials,
   genre,
   setGenre,
   genreList,
@@ -22,12 +22,7 @@ function Browse({
 }) {
   const [showModal, setShowModal] = useState(false);
 
-  const [playlist, setPlaylist] = useState({
-    selectedPlaylist: '',
-    listOfPlaylistFromAPI: [],
-  });
   const [playlistList, setPlaylistList] = useState([]);
-  const [selectedPlaylist, setSelectedPlaylist] = useState([]);
 
   useEffect(() => {
     if (genreList.length === 0) {
@@ -64,7 +59,7 @@ function Browse({
       <DropdownMenu>
         <h2>Choose Genre</h2>
         <Dropdown
-          options={genreList}
+          genreList={genreList}
           selectedValue={genre}
           changed={genreChanged}
         />
@@ -73,7 +68,6 @@ function Browse({
         playlistList={playlistList}
         showModal={showModal}
         setShowModal={setShowModal}
-        loginCredentials={loginCredentials}
         userPlaylists={userPlaylists}
         setUserPlaylists={setUserPlaylists}
         loggedIn={loggedIn}
