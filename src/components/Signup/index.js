@@ -25,7 +25,6 @@ function Signup({setLoginCredentials, setLoggedIn}) {
   
   const handleChange = (e) => {
     setSignupCredentials({...signupCredentials,[e.target.id]: e.target.value});
-    console.log(signupCredentials);
   }
   
   const handleSubmit = (e) => {
