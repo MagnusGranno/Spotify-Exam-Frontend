@@ -1,28 +1,33 @@
 //Base URL
-export const myUrl = 'http://localhost:8080/Spotify_Exam_Backend_war_exploded';
+
+const urlDroplet = 'https://oliverstaehr.com/tomcat/security-start';
+const urlLocal = 'http://localhost:8080/security-start';
+
+export const myUrl = urlLocal;
 
 export const fetchCategories =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/browse';
+  `${myUrl}/api/spotify/browse`;
 
 export const fetchByCategory =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/browse/';
+  `${myUrl}/api/spotify/browse/`;
 
 export const fetchPlayList =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify';
+  `${myUrl}/api/spotify`;
 
 export const signup =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login/create';
+  `${myUrl}/api/login/create`;
 
 export const login =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/login';
+  `${myUrl}/api/login`;
 
 export const followUrl =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/follow';
+  `${myUrl}/api/spotify/follow`;
 
 export const unFollowUrl =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/unfollow';
+  `${myUrl}/api/spotify/unfollow`;
 
-export const userPlaylistsDB = `http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/myplaylists/`;
+export const userPlaylistsDB = 
+  `${myUrl}/api/spotify/myplaylists/`;
 
 export const popularPlaylists =
-  'http://localhost:8080/Spotify_Exam_Backend_war_exploded/api/spotify/popular';
+  `${myUrl}/api/spotify/popular`;
