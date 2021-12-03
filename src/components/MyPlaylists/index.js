@@ -21,6 +21,9 @@ function MyPlaylists({
     try {
       axios(`${userPlaylistsDB}${sessionStorage.getItem('username')}`, {
         method: 'GET',
+        headers:{
+          'x-access-token': sessionStorage.getItem('jwtToken')
+        }
       }).then((response) => {
         setUserPlaylists(response.data);
       });

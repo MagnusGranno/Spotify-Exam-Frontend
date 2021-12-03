@@ -36,6 +36,9 @@ const PlaylistGrid = ({
   const updateUserPlaylist = (url, id) => {
     axios(url, {
       method: 'POST',
+      headers: {
+        "x-access-token": sessionStorage.getItem('jwtToken')
+      },
       data: {
         username: sessionStorage.getItem('username'),
         spotifyId: id,
