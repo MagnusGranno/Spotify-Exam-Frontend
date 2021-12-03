@@ -12,6 +12,7 @@ import {
   ModalTable,
   ModalCross,
 } from './PlaylistModal.styles';
+import { useRef } from 'react';
 
 const PlaylistModal = ({
   showModal,
@@ -19,38 +20,51 @@ const PlaylistModal = ({
   playlistID,
   playlistName,
 }) => {
+  let count = 1;
   const [tracks, setTracks] = useState([]);
-
   const [width, setWidth] = useState(window.innerWidth);
+  const modalRef = useRef(null);
 
   const resize = () => {
     setWidth(window.innerWidth);
   };
+  
   window.addEventListener('resize', resize);
-
-  let count = 1;
 
   const miliToMin = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
+  
+  const outSideClick = () => {
+    setShowModal(!showModal);
+  };
+  
+  const handleClick = (e) => {
+    if(modalRef.current && !modalRef.current.contains(e.target)){
+      outSideClick();
+    }
+  }
+  
+  useEffect(() => {
+    document.addEventListener('click',handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    }
+  })
 
   useEffect(() => {
     axios(`${fetchPlayList}/playlist/${playlistID}`, { method: 'GET' }).then(
       (tracksResponse) => {
         setTracks(tracksResponse.data);
-        console.log(tracksResponse.data);
       }
     );
   }, [playlistID]);
 
-  const outSideClick = () => {
-    setShowModal(!showModal);
-  };
   return (
     <ModalBackdrop>
-      <Rapper>
+      <Rapper ref={modalRef}>
         <div className="modal_buttons">
           <ModalCross src={cross} alt="cross" onClick={outSideClick} />
         </div>

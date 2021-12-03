@@ -22,7 +22,7 @@ function apiFacade() {
         sessionStorage.setItem('username', user);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
