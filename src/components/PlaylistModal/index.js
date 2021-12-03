@@ -48,6 +48,7 @@ const PlaylistModal = ({
   const outSideClick = () => {
     setShowModal(!showModal);
   };
+
   return (
     <ModalBackdrop>
       <Rapper>
@@ -86,14 +87,15 @@ const PlaylistModal = ({
                 <td>{miliToMin(track.duration_ms)}</td>
                 {width > 720 && (
                   <td>
-                    {track.preview_url && (
+                    {track.preview_url ? 
+                    track.preview_url && (
                       <video controls>
                         <source
                           src={track.preview_url}
                           type="audio/mpeg"
                         ></source>
                       </video>
-                    )}
+                    ) : "No preview available"  }
                   </td>
                 )}
               </tr>
