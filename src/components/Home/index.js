@@ -19,7 +19,7 @@ function Home({ loginCredentials, userPlaylists, setUserPlaylists, loggedIn }) {
   const fetchPopular = () => {
     setLoading(true);
     try {
-      console.log(loading);
+      // console.log(loading);
       axios(popularPlaylists, {
         method: 'GET',
       }).then((response) => {
@@ -27,9 +27,9 @@ function Home({ loginCredentials, userPlaylists, setUserPlaylists, loggedIn }) {
         setLoading(false);
       });
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
-    console.log(loading);
+    // console.log(loading);
   };
   useEffect(() => {
     fetchPopular();

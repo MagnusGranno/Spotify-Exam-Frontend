@@ -32,13 +32,16 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(facade.loggedIn);
   const [loginCredentials, setLoginCredentials] = useState(initialState);
   const [userPlaylists, setUserPlaylists] = useState([]);
-
+  
   useEffect(() => {
     if (sessionStorage.getItem('username') && facade.loggedIn) {
       setLoggedIn(true);
 
       axios(`${userPlaylistsDB}${sessionStorage.getItem('username')}`, {
         method: 'GET',
+        headers:{
+          'x-access-token': sessionStorage.getItem('jwtToken')
+        }
       }).then((response) => {
         setUserPlaylists(response.data);
       });

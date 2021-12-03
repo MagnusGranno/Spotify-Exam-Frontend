@@ -28,7 +28,7 @@ function MyPlaylists({
         setUserPlaylists(response.data);
       });
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   };
   useEffect(() => {

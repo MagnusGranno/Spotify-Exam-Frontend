@@ -50,7 +50,7 @@ const PlaylistGrid = ({
     setPlaylistId(id);
     setShowModal(!showModal);
     setPlaylistName(name);
-    console.log(playlistList);
+    // console.log(playlistList);
   };
 
   return (
