@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const MyBody = styled.div`
   height: 100%;
-  padding-bottom: 2rem;
-  padding: 10rem 1rem;
+  padding: 8rem 0;
 `;
 
 export const DropdownMenu = styled.div`
@@ -14,5 +13,8 @@ export const DropdownMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
 
+  @media (max-width: 720px) {
+    width: 300px;
+  }
+`;
