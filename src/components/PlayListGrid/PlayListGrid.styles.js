@@ -63,6 +63,7 @@ export const Button = styled.a`
   width: 100%;
   @media (max-width: 720px) {
     font-size: var(--fs-200);
+    padding: 0.7rem;
   }
 
   :hover {

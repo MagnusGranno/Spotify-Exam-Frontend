@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  margin: 0 1rem;
   height: 100%;
   color: white;
   display: flex;
@@ -47,19 +46,20 @@ export const Content = styled.div`
 export const Menu = styled.div`
   height: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
-  gap: 1rem;
   align-items: center;
   font-size: var(--fs-300);
 
   @media (max-width: 720px) {
     margin-bottom: 1rem;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
   }
   @media (min-width: 860px) {
     font-size: var(--fs-500);
     font-weight: 800;
-    gap: 2rem;
+    gap: 1rem;
   }
   .header_nav:hover {
     color: #dcdcdd;
