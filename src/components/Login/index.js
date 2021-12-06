@@ -58,6 +58,9 @@ const Login = ({
       setLoggedIn(facade.loggedIn());
       if (facade.loggedIn()) {
         axios(`${userPlaylistsDB}${sessionStorage.getItem('username')}`, {
+          headers: {
+            'x-access-token': sessionStorage.getItem('jwtToken')
+          },
           method: 'GET',
         }).then((response) => {
           setUserPlaylists(response.data);
