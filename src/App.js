@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import MyPlaylists from './components/MyPlaylists';
 import Signup from './components/Signup';
+import UserLookup from './components/UserLookup';
 import AdminPanel from './components/AdminPanel';
 
 // Urls
@@ -100,6 +101,15 @@ function App() {
             <MyPlaylists
               loggedIn={loggedIn}
               loginCredentials={loginCredentials}
+              userPlaylists={userPlaylists}
+              setUserPlaylists={setUserPlaylists}
+            />
+          }
+        />
+        <Route
+          path="/userlookup"
+          element={
+            <UserLookup
               userPlaylists={userPlaylists}
               setUserPlaylists={setUserPlaylists}
             />

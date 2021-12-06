@@ -13,6 +13,7 @@ import {
   Menu,
   StyledLogout,
   ProfileLink,
+  StyledForm,
 } from './Header.styles';
 
 function Header({
@@ -39,6 +40,13 @@ function Header({
           </NavLink>
         </h1>
         <Menu>
+        <StyledForm>
+            <input 
+                  placeholder ="Look up user"
+                  id="header-search"
+            />
+            <button type="submit">Search</button>
+          </StyledForm>
           {loggedIn && (
             <NavLink className="header_nav" to="/myPlaylists">
               My Playlists
