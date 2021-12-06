@@ -61,8 +61,13 @@ function Header({
             <StyledLogout onClick={logout}>Logout</StyledLogout>
           )}
           {loggedIn && <div className="line"></div>}
-          {loggedIn && (
+          {loggedIn && sessionStorage.getItem('roles') === '"user"' && (
             <ProfileLink>{sessionStorage.getItem('username')}</ProfileLink>
+          )}
+          {sessionStorage.getItem('roles') === '"admin"' && (
+            <NavLink className="header_nav" to="/adminpanel">
+              Admin
+            </NavLink>
           )}
         </Menu>
       </Content>

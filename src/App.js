@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import MyPlaylists from './components/MyPlaylists';
 import Signup from './components/Signup';
+import AdminPanel from './components/AdminPanel';
 
 // Urls
 import { userPlaylistsDB } from './settings';
@@ -32,16 +33,16 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(facade.loggedIn);
   const [loginCredentials, setLoginCredentials] = useState(initialState);
   const [userPlaylists, setUserPlaylists] = useState([]);
-  
+
   useEffect(() => {
     if (sessionStorage.getItem('username') && facade.loggedIn) {
       setLoggedIn(true);
 
       axios(`${userPlaylistsDB}${sessionStorage.getItem('username')}`, {
         method: 'GET',
-        headers:{
-          'x-access-token': sessionStorage.getItem('jwtToken')
-        }
+        headers: {
+          'x-access-token': sessionStorage.getItem('jwtToken'),
+        },
       }).then((response) => {
         setUserPlaylists(response.data);
       });
@@ -113,6 +114,8 @@ function App() {
             />
           }
         />
+
+        <Route path="/adminpanel" element={<AdminPanel />} />
       </Routes>
       <GlobalStyle />
     </Router>
