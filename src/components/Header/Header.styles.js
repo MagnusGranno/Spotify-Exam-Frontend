@@ -91,3 +91,15 @@ export const StyledLogout = styled.div`
     color: #dcdcdd;
   }
 `;
+
+export const StyledForm = styled.form`
+font-size: var(--fs-300);
+
+@media (min-width: 860px) {
+  font-size: var(--fs-500);
+}
+:button {
+font-size: var(--fs-500)
+}
+cursor: pointer;
+`;
