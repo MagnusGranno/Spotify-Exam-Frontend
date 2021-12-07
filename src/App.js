@@ -14,6 +14,7 @@ import MyPlaylists from './components/MyPlaylists';
 import Signup from './components/Signup';
 import UserLookup from './components/UserLookup';
 import AdminPanel from './components/AdminPanel';
+import UserProfile from './components/UserProfile';
 
 // Urls
 import { userPlaylistsDB } from './settings';
@@ -126,6 +127,8 @@ function App() {
         />
 
         <Route path="/adminpanel" element={<AdminPanel />} />
+
+        <Route path="/userprofile" element={<UserProfile />} />
       </Routes>
       <GlobalStyle />
     </Router>

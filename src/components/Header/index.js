@@ -67,7 +67,9 @@ function Header({
           )}
           {loggedIn && <div className="line"></div>}
           {loggedIn && sessionStorage.getItem('roles') === '"user"' && (
-            <ProfileLink>{sessionStorage.getItem('username')}</ProfileLink>
+            <NavLink className="header_nav" to="/userprofile">
+              {sessionStorage.getItem('username')}
+            </NavLink>
           )}
           {sessionStorage.getItem('roles') === '"admin"' && (
             <NavLink className="header_nav" to="/adminpanel">
