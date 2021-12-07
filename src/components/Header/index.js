@@ -40,11 +40,8 @@ function Header({
           </NavLink>
         </h1>
         <Menu>
-        <StyledForm>
-            <input 
-                  placeholder ="Look up user"
-                  id="header-search"
-            />
+          <StyledForm>
+            <input placeholder="Look up user" id="header-search" />
             <button type="submit">Search</button>
           </StyledForm>
           {loggedIn && (
