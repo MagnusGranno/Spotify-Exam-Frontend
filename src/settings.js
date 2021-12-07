@@ -22,3 +22,11 @@ export const unFollowUrl = `${myUrl}/api/spotify/unfollow`;
 export const userPlaylistsDB = `${myUrl}/api/spotify/myplaylists/`;
 
 export const popularPlaylists = `${myUrl}/api/spotify/popular`;
+
+export const userCountURL = `${myUrl}/api/spotify/usercount`;
+
+export const usersUrl = `${myUrl}/api/spotify/users`;
+
+export const deleteUserUrl = `${myUrl}/api/login/delete`;
+
+export const updateUserUrl = `${myUrl}/api/login/update`;

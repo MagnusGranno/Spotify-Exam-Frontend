@@ -1,3 +1,14 @@
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+
+// url
+import {
+  userCountURL,
+  usersUrl,
+  deleteUserUrl,
+  updateUserUrl,
+} from '../../settings';
+// Styles
 import {
   AdminTable,
   AdminWrapper,
@@ -11,6 +22,81 @@ import {
 } from './AdminPanel.styles';
 
 const AdminPanel = () => {
+  const [userCount, setUserCount] = useState(0);
+  const [users, setUsers] = useState([]);
+  let keyID = 1;
+  const getUserCount = () => {
+    try {
+      axios(userCountURL, {
+        method: 'GET',
+        headers: {
+          'x-access-token': sessionStorage.getItem('jwtToken'),
+        },
+      }).then((response) => {
+        setUserCount(response.data.userCount);
+      });
+    } catch (error) {
+      console.error('shit');
+    }
+  };
+  const getUsers = () => {
+    try {
+      axios(usersUrl, {
+        method: 'GET',
+        headers: {
+          'x-access-token': sessionStorage.getItem('jwtToken'),
+        },
+      }).then((response) => {
+        setUsers(response.data);
+      });
+    } catch (error) {
+      console.error('shit');
+    }
+  };
+
+  const deleteUser = async (userName) => {
+    let answer = prompt(`Type delete to delete ${userName}`);
+    if (answer !== 'delete') return;
+    if (answer === 'delete') {
+      try {
+        await axios(`${deleteUserUrl}/${userName}`, {
+          method: 'DELETE',
+          headers: {
+            'x-access-token': sessionStorage.getItem('jwtToken'),
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    setUserCount(userCount - 1);
+  };
+
+  const updateUser = async (userName) => {
+    let newPassword = prompt(`Give ${userName} a new password!`);
+    const updateUserObject = {
+      username: userName,
+      password: newPassword ?? `${userName}123`,
+    };
+    try {
+      await axios(`${updateUserUrl}/${userName}`, {
+        method: 'PUT',
+        headers: {
+          'x-access-token': sessionStorage.getItem('jwtToken'),
+        },
+        data: updateUserObject,
+      });
+      alert('Success!');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserCount();
+    getUsers();
+  }, [userCount]);
+
   return (
     <AdminWrapper>
       {/* STATISTICS */}
@@ -29,7 +115,7 @@ const AdminPanel = () => {
           </thead>
           <tbody>
             <tr>
-              <td>10</td>
+              <td>{userCount}</td>
               <td>2</td>
             </tr>
           </tbody>
@@ -47,81 +133,35 @@ const AdminPanel = () => {
             </tr>
             <tr>
               <th>Username</th>
-              <th>Follows</th>
+              <th>PL Count</th>
               <th colSpan="2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
-            <tr>
-              <td>Magnus</td>
-              <td>10</td>
-              <td>
-                <EditButton>Edit</EditButton>
-              </td>
-              <td>
-                <DeleteButton>Delete</DeleteButton>
-              </td>
-            </tr>
+            {users.map((user) => (
+              <tr key={keyID++}>
+                <td>{user.userName}</td>
+                <td>{user.playlistCount}</td>
+                <td>
+                  <EditButton
+                    onClick={() => {
+                      updateUser(user.userName);
+                    }}
+                  >
+                    Edit
+                  </EditButton>
+                </td>
+                <td>
+                  <DeleteButton
+                    onClick={() => {
+                      deleteUser(user.userName);
+                    }}
+                  >
+                    Delete
+                  </DeleteButton>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </AdminTable>
       </AdminUserContent>
